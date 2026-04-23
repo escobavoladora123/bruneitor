@@ -27,14 +27,13 @@
     --red: #FF1744;
     --blue: #448AFF;
     --purple: #B388FF;
+    --cyan: #00BCD4;
     --font-display: 'Bebas Neue', sans-serif;
     --font-body: 'DM Sans', sans-serif;
     --radius: 16px;
     --radius-sm: 10px;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
   body {
     font-family: var(--font-body);
     background: var(--bg);
@@ -51,9 +50,7 @@
     padding: 56px 20px 14px;
     border-bottom: 1px solid var(--border);
   }
-  .brand {
-    display: flex; align-items: center; gap: 10px;
-  }
+  .brand { display: flex; align-items: center; gap: 10px; }
   .brand-logo {
     width: 36px; height: 36px; border-radius: 10px;
     background: linear-gradient(135deg, var(--accent), #ff6a4d);
@@ -61,10 +58,7 @@
     font-family: var(--font-display); font-size: 20px; color: #fff;
     box-shadow: 0 4px 20px var(--accent-glow);
   }
-  .brand h1 {
-    font-family: var(--font-display);
-    font-size: 28px; letter-spacing: 4px; color: var(--text);
-  }
+  .brand h1 { font-family: var(--font-display); font-size: 28px; letter-spacing: 4px; color: var(--text); }
   .brand h1 span { color: var(--accent); }
   .header-sub {
     font-size: 12px; color: var(--muted); margin-top: 2px;
@@ -72,40 +66,25 @@
     padding-left: 46px;
   }
 
+  /* ===== TRACKERS ROW ===== */
+  .trackers-row { display: flex; gap: 10px; margin: 16px 16px 0; }
+
   /* ===== CREATINE TRACKER ===== */
   .creatine-tracker {
-    margin: 16px;
-    padding: 18px;
-    background: var(--card);
-    border-radius: var(--radius);
+    flex: 1; padding: 18px;
+    background: var(--card); border-radius: var(--radius);
     border: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
   }
   .creatine-tracker::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
     background: linear-gradient(90deg, var(--gold), transparent);
   }
-  .creatine-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 4px;
-  }
-  .creatine-title {
-    font-family: var(--font-display); font-size: 16px;
-    letter-spacing: 2px; color: var(--gold);
-  }
-  .creatine-dose {
-    font-size: 11px; color: var(--muted); background: var(--gold-glow);
-    padding: 3px 8px; border-radius: 6px; font-weight: 600;
-  }
-  .streak-text {
-    font-size: 12px; color: var(--muted); margin-bottom: 14px;
-    font-weight: 500;
-  }
-  .creatine-nav {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 12px;
-  }
+  .creatine-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+  .creatine-title { font-family: var(--font-display); font-size: 16px; letter-spacing: 2px; color: var(--gold); }
+  .creatine-dose { font-size: 11px; color: var(--muted); background: var(--gold-glow); padding: 3px 8px; border-radius: 6px; font-weight: 600; }
+  .streak-text { font-size: 12px; color: var(--muted); margin-bottom: 14px; font-weight: 500; }
+  .creatine-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
   .creatine-nav button {
     background: rgba(255,255,255,0.04); border: 1px solid var(--border);
     color: var(--muted); width: 30px; height: 30px; border-radius: 50%;
@@ -113,10 +92,7 @@
   }
   .creatine-nav button:active { background: rgba(255,255,255,0.08); }
   .week-label { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.5px; }
-  .creatine-week {
-    display: grid; grid-template-columns: repeat(7, 1fr);
-    gap: 6px; text-align: center;
-  }
+  .creatine-week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
   .creatine-day { display: flex; flex-direction: column; align-items: center; gap: 4px; }
   .creatine-day .day-label { font-size: 10px; color: var(--muted); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
   .creatine-day .day-num { font-size: 11px; color: var(--muted); }
@@ -127,18 +103,43 @@
     display: flex; align-items: center; justify-content: center;
     cursor: pointer; transition: all 0.25s ease;
   }
-  .creatine-check.checked {
-    background: var(--gold); border-color: var(--gold);
-    color: #000; box-shadow: 0 2px 12px var(--gold-glow);
-  }
+  .creatine-check.checked { background: var(--gold); border-color: var(--gold); color: #000; box-shadow: 0 2px 12px var(--gold-glow); }
   .creatine-check.today { border-color: var(--gold); }
   .creatine-check.past:not(.checked) { border-color: var(--red); opacity: 0.4; }
 
+  /* ===== WATER TRACKER ===== */
+  .water-tracker {
+    margin: 10px 16px 0; padding: 16px 18px;
+    background: var(--card); border-radius: var(--radius);
+    border: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .water-tracker::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--cyan), transparent);
+  }
+  .water-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .water-title { font-family: var(--font-display); font-size: 14px; letter-spacing: 2px; color: var(--cyan); }
+  .water-target { font-size: 11px; color: var(--muted); font-weight: 600; }
+  .water-bar-bg { height: 8px; background: #1e1e1e; border-radius: 4px; overflow: hidden; margin-bottom: 8px; }
+  .water-bar-fill { height: 100%; background: var(--cyan); border-radius: 4px; transition: width 0.3s ease; }
+  .water-controls { display: flex; align-items: center; justify-content: space-between; }
+  .water-count { font-family: var(--font-display); font-size: 22px; letter-spacing: 1px; }
+  .water-count span { color: var(--muted); font-size: 14px; }
+  .water-btns { display: flex; gap: 8px; }
+  .water-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid var(--border); background: rgba(255,255,255,0.04);
+    color: var(--text); font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .water-btn:active { background: rgba(0,188,212,0.15); border-color: var(--cyan); }
+
   /* ===== OBJETIVO ===== */
   .objetivo {
-    margin: 0 16px 0; padding: 18px;
-    background: var(--card);
-    border-radius: var(--radius);
+    margin: 10px 16px 0; padding: 18px;
+    background: var(--card); border-radius: var(--radius);
     border: 1px solid var(--border);
     position: relative; overflow: hidden;
   }
@@ -146,19 +147,14 @@
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
     background: linear-gradient(90deg, var(--blue), transparent);
   }
-  .objetivo-label {
-    font-family: var(--font-display); font-size: 14px;
-    letter-spacing: 2px; color: var(--blue); margin-bottom: 12px;
-  }
+  .objetivo-label { font-family: var(--font-display); font-size: 14px; letter-spacing: 2px; color: var(--blue); margin-bottom: 12px; }
   .objetivo-grid { display: flex; gap: 8px; }
   .objetivo-item {
     flex: 1; background: rgba(255,255,255,0.03);
     border-radius: var(--radius-sm); padding: 12px 8px; text-align: center;
     border: 1px solid var(--border);
   }
-  .objetivo-item .val {
-    font-family: var(--font-display); font-size: 26px; letter-spacing: 1px;
-  }
+  .objetivo-item .val { font-family: var(--font-display); font-size: 26px; letter-spacing: 1px; }
   .objetivo-item .lbl { font-size: 10px; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
 
   /* ===== TABS ===== */
@@ -177,10 +173,7 @@
     border: 1px solid var(--border); cursor: pointer;
     background: var(--surface); color: var(--muted); transition: all 0.25s;
   }
-  .tab.active {
-    color: #fff; border-color: transparent;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-  }
+  .tab.active { color: #fff; border-color: transparent; box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
   .tab[data-day="lun"].active { background: var(--accent); box-shadow: 0 4px 16px var(--accent-glow); }
   .tab[data-day="mar"].active { background: var(--blue); }
   .tab[data-day="mie"].active { background: var(--purple); }
@@ -193,11 +186,7 @@
   .content { padding: 0 16px 32px; }
   .day-panel { display: none; }
   .day-panel.active { display: block; animation: fadeUp 0.35s ease; }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
   .day-title { display: flex; align-items: center; gap: 10px; margin: 18px 0 4px; }
   .day-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
@@ -205,9 +194,7 @@
   .day-subtitle { font-size: 12px; color: var(--muted); margin-bottom: 16px; letter-spacing: 0.5px; font-weight: 500; }
 
   /* ===== REST TIMER ===== */
-  .rest-timer-bar {
-    margin-bottom: 14px;
-  }
+  .rest-timer-bar { margin-bottom: 14px; }
   .rest-timer-btn {
     width: 100%; padding: 14px; border-radius: var(--radius);
     border: 1px solid var(--border); background: var(--card);
@@ -221,44 +208,27 @@
     color: var(--accent); font-size: 36px; padding: 24px;
     box-shadow: 0 0 30px var(--accent-glow);
   }
-  .rest-timer-btn.done {
-    border-color: var(--green); color: var(--green);
-    box-shadow: 0 0 30px var(--green-glow);
-  }
-  .rest-timer-progress {
-    height: 3px; background: var(--border); border-radius: 2px;
-    margin-top: 8px; overflow: hidden; opacity: 0; transition: opacity 0.3s;
-  }
+  .rest-timer-btn.done { border-color: var(--green); color: var(--green); box-shadow: 0 0 30px var(--green-glow); }
+  .rest-timer-progress { height: 3px; background: var(--border); border-radius: 2px; margin-top: 8px; overflow: hidden; opacity: 0; transition: opacity 0.3s; }
   .rest-timer-progress.visible { opacity: 1; }
-  .rest-timer-fill {
-    height: 100%; background: var(--accent); border-radius: 2px;
-    transition: width 1s linear;
-  }
+  .rest-timer-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 1s linear; }
 
   /* ===== SECTIONS ===== */
   .section {
-    background: var(--card); border-radius: var(--radius);
-    margin-bottom: 12px; overflow: hidden;
-    border: 1px solid var(--border);
-    transition: border-color 0.3s;
+    background: var(--card); border-radius: var(--radius); margin-bottom: 12px;
+    overflow: hidden; border: 1px solid var(--border); transition: border-color 0.3s;
   }
   .section-header {
     display: flex; justify-content: space-between; align-items: center;
     padding: 14px 16px; cursor: pointer; user-select: none;
   }
-  .section-header h3 {
-    font-family: var(--font-display); font-size: 16px;
-    letter-spacing: 1.5px;
-  }
+  .section-header h3 { font-family: var(--font-display); font-size: 16px; letter-spacing: 1.5px; }
   .section-header .badge {
     font-size: 10px; padding: 3px 10px; border-radius: 20px;
     background: rgba(255,255,255,0.05); color: var(--muted);
     font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
   }
-  .section-header .chevron {
-    font-size: 10px; color: var(--muted); transition: transform 0.3s;
-    margin-left: 8px;
-  }
+  .section-header .chevron { font-size: 10px; color: var(--muted); transition: transform 0.3s; margin-left: 8px; }
   .section.collapsed .section-body { display: none; }
   .section.collapsed .chevron { transform: rotate(-90deg); }
   .section-body { padding: 0 16px 14px; }
@@ -266,8 +236,7 @@
   /* ===== EXERCISES ===== */
   .exercise {
     display: flex; align-items: center; padding: 12px 0;
-    border-bottom: 1px solid var(--border); gap: 8px;
-    transition: opacity 0.3s;
+    border-bottom: 1px solid var(--border); gap: 8px; transition: opacity 0.3s;
   }
   .exercise:last-child { border-bottom: none; }
   .exercise.done { opacity: 0.35; }
@@ -278,18 +247,12 @@
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0; transition: all 0.25s;
   }
-  .ex-check.checked {
-    border-color: var(--green); background: var(--green);
-    color: #000; box-shadow: 0 2px 8px var(--green-glow);
-  }
-  .exercise .name {
-    font-size: 14px; font-weight: 500; flex: 1; min-width: 0;
-  }
+  .ex-check.checked { border-color: var(--green); background: var(--green); color: #000; box-shadow: 0 2px 8px var(--green-glow); }
+  .exercise .name { font-size: 14px; font-weight: 500; flex: 1; min-width: 0; }
   .exercise .sets {
     font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums;
     white-space: nowrap; flex-shrink: 0; font-weight: 600;
-    background: rgba(255,255,255,0.04); padding: 3px 7px;
-    border-radius: 6px; letter-spacing: 0.3px;
+    background: rgba(255,255,255,0.04); padding: 3px 7px; border-radius: 6px;
   }
   .weight-input {
     width: 54px; padding: 6px 4px; border-radius: var(--radius-sm);
@@ -305,39 +268,33 @@
   /* ===== MEALS ===== */
   .meal { padding: 14px 0; border-bottom: 1px solid var(--border); }
   .meal:last-child { border-bottom: none; }
-  .meal-name {
-    font-family: var(--font-display); font-size: 13px;
-    color: var(--muted); letter-spacing: 1.5px; margin-bottom: 8px;
-  }
+  .meal-name { font-family: var(--font-display); font-size: 13px; color: var(--muted); letter-spacing: 1.5px; margin-bottom: 8px; }
   .meal-items { list-style: none; }
-  .meal-items li {
-    font-size: 13px; padding: 3px 0 3px 16px; position: relative;
-    color: rgba(234,234,234,0.85);
-  }
-  .meal-items li::before {
-    content: ''; position: absolute; left: 0; top: 11px;
-    width: 4px; height: 4px; border-radius: 50%; background: #2a2a2a;
-  }
-  .meal-items .highlight {
-    color: var(--gold); font-weight: 600;
-  }
+  .meal-items li { font-size: 13px; padding: 3px 0 3px 16px; position: relative; color: rgba(234,234,234,0.85); }
+  .meal-items li::before { content: ''; position: absolute; left: 0; top: 11px; width: 4px; height: 4px; border-radius: 50%; background: #2a2a2a; }
+  .meal-items .highlight { color: var(--gold); font-weight: 600; }
   .meal-items .highlight::before { background: var(--gold); }
+
+  /* ===== MACROS BADGE ===== */
+  .macros-badge {
+    margin-top: 10px; padding: 10px 14px;
+    background: rgba(255,255,255,0.03); border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    display: flex; justify-content: space-around; text-align: center;
+  }
+  .macro-item .macro-val { font-family: var(--font-display); font-size: 18px; letter-spacing: 0.5px; }
+  .macro-item .macro-lbl { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
 
   /* ===== CARDIO ===== */
   .cardio-info { padding: 10px 0; }
-  .cardio-info .row {
-    display: flex; justify-content: space-between; padding: 7px 0;
-    font-size: 13px;
-  }
+  .cardio-info .row { display: flex; justify-content: space-between; padding: 7px 0; font-size: 13px; }
   .cardio-info .label { color: var(--muted); }
   .cardio-info .value { font-weight: 600; font-variant-numeric: tabular-nums; }
 
   /* ===== REST DAY ===== */
   .rest-message { text-align: center; padding: 48px 20px; }
   .rest-emoji { font-size: 56px; margin-bottom: 16px; }
-  .rest-text {
-    font-size: 15px; color: var(--muted); line-height: 1.6;
-  }
+  .rest-text { font-size: 15px; color: var(--muted); line-height: 1.6; }
   .rest-text strong { color: var(--text); font-weight: 600; }
 
   /* ===== RULES ===== */
@@ -346,18 +303,9 @@
     border-radius: var(--radius); border: 1px solid var(--border);
     position: relative; overflow: hidden;
   }
-  .rules::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--green), transparent);
-  }
-  .rules h3 {
-    font-family: var(--font-display); font-size: 16px;
-    letter-spacing: 2px; margin-bottom: 14px; color: var(--green);
-  }
-  .rule-item {
-    display: flex; gap: 10px; padding: 8px 0; font-size: 13px;
-    align-items: flex-start; color: rgba(234,234,234,0.8);
-  }
+  .rules::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--green), transparent); }
+  .rules h3 { font-family: var(--font-display); font-size: 16px; letter-spacing: 2px; margin-bottom: 14px; color: var(--green); }
+  .rule-item { display: flex; gap: 10px; padding: 8px 0; font-size: 13px; align-items: flex-start; color: rgba(234,234,234,0.8); }
   .rule-icon { flex-shrink: 0; width: 20px; text-align: center; font-size: 14px; }
 
   /* ===== RESET ===== */
@@ -365,17 +313,10 @@
   .reset-btn {
     background: transparent; border: 1px solid #1e1e1e; color: var(--muted);
     padding: 10px 24px; border-radius: 24px; font-size: 11px;
-    cursor: pointer; font-family: var(--font-display);
-    letter-spacing: 2px; transition: all 0.2s;
+    cursor: pointer; font-family: var(--font-display); letter-spacing: 2px; transition: all 0.2s;
   }
   .reset-btn:active { border-color: var(--red); color: var(--red); }
-
-  /* ===== FOOTER BRAND ===== */
-  .footer-brand {
-    text-align: center; padding: 0 0 20px;
-    font-family: var(--font-display); font-size: 14px;
-    letter-spacing: 4px; color: #1a1a1a;
-  }
+  .footer-brand { text-align: center; padding: 0 0 20px; font-family: var(--font-display); font-size: 14px; letter-spacing: 4px; color: #1a1a1a; }
 </style>
 </head>
 <body>
@@ -386,11 +327,11 @@
     <div class="brand-logo">B</div>
     <h1>BRUNEI<span>TOR</span></h1>
   </div>
-  <div class="header-sub">Volumen limpio &middot; 68 → 72 kg</div>
+  <div class="header-sub">Volumen limpio · 68 → 72 kg</div>
 </div>
 
 <!-- CREATINE -->
-<div class="creatine-tracker">
+<div class="creatine-tracker" style="margin: 16px 16px 0;">
   <div class="creatine-header">
     <div class="creatine-title">⚡ CREATINA DIARIA</div>
     <div class="creatine-dose">5g</div>
@@ -404,13 +345,29 @@
   <div class="creatine-week" id="creatine-week"></div>
 </div>
 
+<!-- WATER -->
+<div class="water-tracker">
+  <div class="water-header">
+    <div class="water-title">💧 AGUA</div>
+    <div class="water-target" id="water-target-label">Meta: 2.5L</div>
+  </div>
+  <div class="water-bar-bg"><div class="water-bar-fill" id="water-fill"></div></div>
+  <div class="water-controls">
+    <div class="water-count"><span id="water-count">0</span> <span>/ <span id="water-goal-display">10</span> vasos</span></div>
+    <div class="water-btns">
+      <button class="water-btn" onclick="changeWater(-1)">−</button>
+      <button class="water-btn" onclick="changeWater(1)">+</button>
+    </div>
+  </div>
+</div>
+
 <!-- OBJETIVO -->
 <div class="objetivo">
   <div class="objetivo-label">OBJETIVO</div>
   <div class="objetivo-grid">
     <div class="objetivo-item"><div class="val">68</div><div class="lbl">Actual</div></div>
     <div class="objetivo-item"><div class="val">72</div><div class="lbl">Meta</div></div>
-    <div class="objetivo-item"><div class="val">5g</div><div class="lbl">Creatina</div></div>
+    <div class="objetivo-item"><div class="val">~2550</div><div class="lbl">Kcal/día</div></div>
   </div>
 </div>
 
@@ -418,10 +375,10 @@
 <div class="tabs" id="tabs">
   <button class="tab" data-day="lun" onclick="showDay('lun')">LUN</button>
   <button class="tab" data-day="mar" onclick="showDay('mar')">MAR</button>
-  <button class="tab" data-day="mie" onclick="showDay('mie')">MIE</button>
+  <button class="tab" data-day="mie" onclick="showDay('mie')">MIÉ</button>
   <button class="tab" data-day="jue" onclick="showDay('jue')">JUE</button>
   <button class="tab" data-day="vie" onclick="showDay('vie')">VIE</button>
-  <button class="tab" data-day="sab" onclick="showDay('sab')">SAB</button>
+  <button class="tab" data-day="sab" onclick="showDay('sab')">SÁB</button>
   <button class="tab" data-day="dom" onclick="showDay('dom')">DOM</button>
 </div>
 
@@ -430,7 +387,7 @@
   <!-- LUNES -->
   <div class="day-panel" id="day-lun">
     <div class="day-title"><div class="day-dot" style="background:var(--accent)"></div><h2>LUNES</h2></div>
-    <div class="day-subtitle">Pecho + Triceps + Pilates 20hs</div>
+    <div class="day-subtitle">Pecho + Tríceps · 7am ayunas · Pilates 20hs</div>
     <div class="rest-timer-bar">
       <button class="rest-timer-btn" id="timer-lun" onclick="toggleTimer('lun')">DESCANSO 1:30</button>
       <div class="rest-timer-progress" id="timer-prog-lun"><div class="rest-timer-fill" id="timer-fill-lun"></div></div>
@@ -448,13 +405,19 @@
       </div>
     </div>
     <div class="section" id="lun-com">
-      <div class="section-header" onclick="toggle('lun-com')"><h3>COMIDAS</h3><div><span class="badge">5 comidas</span><span class="chevron">▼</span></div></div>
+      <div class="section-header" onclick="toggle('lun-com')"><h3>COMIDAS</h3><div><span class="badge">6 comidas</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
-        <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos (2 enteros + 1 clara)</li><li>30 g avena</li><li>1 banana</li><li>150-200 ml leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
-        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g pollo o carne</li><li>50 g arroz crudo</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
-        <div class="meal"><div class="meal-name">FRUTA DEL DÍA</div><ul class="meal-items"><li>1 fruta (manzana / pera / naranja / 2 mandarinas)</li></ul></div>
-        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 claras + 2 yemas</li></ul></div>
-        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>40 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+        <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos (2 enteros + 1 clara)</li><li>50 g avena</li><li>1 banana</li><li>150-200 ml leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g pollo o carne</li><li>70 g arroz crudo</li><li>Ensalada + 15 g aceite</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>Whey protein</li><li>Barrita Integra (15g prot)</li></ul></div>
+        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>50 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">POST-CENA</div><ul class="meal-items"><li>Yogur La Serenísima (15g prot)</li></ul></div>
+        <div class="macros-badge">
+          <div class="macro-item"><div class="macro-val">~195g</div><div class="macro-lbl">Proteína</div></div>
+          <div class="macro-item"><div class="macro-val">~210g</div><div class="macro-lbl">Carbos</div></div>
+          <div class="macro-item"><div class="macro-val">~65g</div><div class="macro-lbl">Grasa</div></div>
+          <div class="macro-item"><div class="macro-val">~2550</div><div class="macro-lbl">Kcal</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -462,7 +425,7 @@
   <!-- MARTES -->
   <div class="day-panel" id="day-mar">
     <div class="day-title"><div class="day-dot" style="background:var(--blue)"></div><h2>MARTES</h2></div>
-    <div class="day-subtitle">Espalda + Bíceps</div>
+    <div class="day-subtitle">Espalda + Bíceps · 7am ayunas</div>
     <div class="rest-timer-bar">
       <button class="rest-timer-btn" id="timer-mar" onclick="toggleTimer('mar')">DESCANSO 1:30</button>
       <div class="rest-timer-progress" id="timer-prog-mar"><div class="rest-timer-fill" id="timer-fill-mar"></div></div>
@@ -480,12 +443,19 @@
       </div>
     </div>
     <div class="section" id="mar-com">
-      <div class="section-header" onclick="toggle('mar-com')"><h3>COMIDAS</h3><div><span class="badge">4 comidas</span><span class="chevron">▼</span></div></div>
+      <div class="section-header" onclick="toggle('mar-com')"><h3>COMIDAS</h3><div><span class="badge">5 comidas</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
-        <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos</li><li>30 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
-        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>60 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
-        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 claras + 2 yemas</li></ul></div>
-        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>50 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+        <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos</li><li>50 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>70 g arroz</li><li>Ensalada + 15 g aceite</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>Whey protein</li><li>Barrita Integra (15g prot)</li></ul></div>
+        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>50 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">POST-CENA</div><ul class="meal-items"><li>Yogur La Serenísima (15g prot)</li></ul></div>
+        <div class="macros-badge">
+          <div class="macro-item"><div class="macro-val">~195g</div><div class="macro-lbl">Proteína</div></div>
+          <div class="macro-item"><div class="macro-val">~210g</div><div class="macro-lbl">Carbos</div></div>
+          <div class="macro-item"><div class="macro-val">~65g</div><div class="macro-lbl">Grasa</div></div>
+          <div class="macro-item"><div class="macro-val">~2550</div><div class="macro-lbl">Kcal</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -493,16 +463,22 @@
   <!-- MIERCOLES -->
   <div class="day-panel" id="day-mie">
     <div class="day-title"><div class="day-dot" style="background:var(--purple)"></div><h2>MIÉRCOLES</h2></div>
-    <div class="day-subtitle">Descanso (Oficina)</div>
+    <div class="day-subtitle">Descanso · Oficina</div>
     <div class="rest-message"><div class="rest-emoji">😴</div><div class="rest-text"><strong>Día de descanso</strong><br>Recuperación muscular</div></div>
     <div class="section" id="mie-com">
       <div class="section-header" onclick="toggle('mie-com')"><h3>COMIDAS</h3><div><span class="badge">5 comidas</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
-        <div class="meal"><div class="meal-name">DESAYUNO</div><ul class="meal-items"><li>3 huevos</li><li>30 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
-        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>30 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
-        <div class="meal"><div class="meal-name">POST ALMUERZO</div><ul class="meal-items"><li>1 fruta (manzana / pera / naranja / 2 mandarinas)</li></ul></div>
-        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 claras + 2 yemas</li></ul></div>
-        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>20-25 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+        <div class="meal"><div class="meal-name">DESAYUNO</div><ul class="meal-items"><li>3 huevos</li><li>50 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>50 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>Whey protein</li><li>Barrita Integra (15g prot)</li></ul></div>
+        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>30 g arroz</li><li>Ensalada + 10 g aceite</li></ul></div>
+        <div class="meal"><div class="meal-name">POST-CENA</div><ul class="meal-items"><li>Yogur La Serenísima (15g prot)</li></ul></div>
+        <div class="macros-badge">
+          <div class="macro-item"><div class="macro-val">~185g</div><div class="macro-lbl">Proteína</div></div>
+          <div class="macro-item"><div class="macro-val">~175g</div><div class="macro-lbl">Carbos</div></div>
+          <div class="macro-item"><div class="macro-val">~60g</div><div class="macro-lbl">Grasa</div></div>
+          <div class="macro-item"><div class="macro-val">~2300</div><div class="macro-lbl">Kcal</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -510,7 +486,7 @@
   <!-- JUEVES -->
   <div class="day-panel" id="day-jue">
     <div class="day-title"><div class="day-dot" style="background:var(--gold)"></div><h2>JUEVES</h2></div>
-    <div class="day-subtitle">Hombros + Core + Cardio</div>
+    <div class="day-subtitle">Hombros + Core + Brazos + Cardio · 7am ayunas</div>
     <div class="rest-timer-bar">
       <button class="rest-timer-btn" id="timer-jue" onclick="toggleTimer('jue')">DESCANSO 1:30</button>
       <div class="rest-timer-progress" id="timer-prog-jue"><div class="rest-timer-fill" id="timer-fill-jue"></div></div>
@@ -523,6 +499,13 @@
         <div class="exercise" id="ex-jue-posteriores"><button class="ex-check" onclick="toggleEx('jue-posteriores')">✓</button><span class="name">Posteriores</span><span class="sets">3×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-posteriores"><span class="weight-unit">kg</span></div>
         <div class="exercise" id="ex-jue-maq-hombro"><button class="ex-check" onclick="toggleEx('jue-maq-hombro')">✓</button><span class="name">Máquina hombro</span><span class="sets">3×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-maq-hombro"><span class="weight-unit">kg</span></div>
         <div class="exercise" id="ex-jue-encogimientos"><button class="ex-check" onclick="toggleEx('jue-encogimientos')">✓</button><span class="name">Encogimientos</span><span class="sets">3×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-encogimientos"><span class="weight-unit">kg</span></div>
+      </div>
+    </div>
+    <div class="section" id="jue-brazos">
+      <div class="section-header" onclick="toggle('jue-brazos')"><h3>BRAZOS</h3><div><span class="badge">2 ejercicios</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="exercise" id="ex-jue-curl"><button class="ex-check" onclick="toggleEx('jue-curl')">✓</button><span class="name">Curl barra o mancuernas</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-curl"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-jue-tri-inv"><button class="ex-check" onclick="toggleEx('jue-tri-inv')">✓</button><span class="name">Tríceps agarre inverso</span><span class="sets">3×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-tri-inv"><span class="weight-unit">kg</span></div>
       </div>
     </div>
     <div class="section" id="jue-core">
@@ -544,12 +527,19 @@
       </div>
     </div>
     <div class="section" id="jue-com">
-      <div class="section-header" onclick="toggle('jue-com')"><h3>COMIDAS</h3><div><span class="badge">4 comidas</span><span class="chevron">▼</span></div></div>
+      <div class="section-header" onclick="toggle('jue-com')"><h3>COMIDAS</h3><div><span class="badge">5 comidas</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
-        <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos</li><li>30 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
-        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>60 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
-        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 claras + 2 yemas</li></ul></div>
-        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>40-50 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+        <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos</li><li>50 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>70 g arroz</li><li>Ensalada + 15 g aceite</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>Whey protein</li><li>Barrita Integra (15g prot)</li></ul></div>
+        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>50 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">POST-CENA</div><ul class="meal-items"><li>Yogur La Serenísima (15g prot)</li></ul></div>
+        <div class="macros-badge">
+          <div class="macro-item"><div class="macro-val">~195g</div><div class="macro-lbl">Proteína</div></div>
+          <div class="macro-item"><div class="macro-val">~210g</div><div class="macro-lbl">Carbos</div></div>
+          <div class="macro-item"><div class="macro-val">~65g</div><div class="macro-lbl">Grasa</div></div>
+          <div class="macro-item"><div class="macro-val">~2550</div><div class="macro-lbl">Kcal</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -557,7 +547,7 @@
   <!-- VIERNES -->
   <div class="day-panel" id="day-vie">
     <div class="day-title"><div class="day-dot" style="background:var(--green)"></div><h2>VIERNES</h2></div>
-    <div class="day-subtitle">Piernas</div>
+    <div class="day-subtitle">Piernas + Brazos · 7am ayunas</div>
     <div class="rest-timer-bar">
       <button class="rest-timer-btn" id="timer-vie" onclick="toggleTimer('vie')">DESCANSO 1:30</button>
       <div class="rest-timer-progress" id="timer-prog-vie"><div class="rest-timer-fill" id="timer-fill-vie"></div></div>
@@ -574,13 +564,26 @@
         <div class="exercise" id="ex-vie-gemelos"><button class="ex-check" onclick="toggleEx('vie-gemelos')">✓</button><span class="name">Gemelos</span><span class="sets">4×15-20</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-gemelos"><span class="weight-unit">kg</span></div>
       </div>
     </div>
-    <div class="section" id="vie-com">
-      <div class="section-header" onclick="toggle('vie-com')"><h3>COMIDAS</h3><div><span class="badge">4 comidas</span><span class="chevron">▼</span></div></div>
+    <div class="section" id="vie-brazos">
+      <div class="section-header" onclick="toggle('vie-brazos')"><h3>BRAZOS (EXTRA)</h3><div><span class="badge">1 ejercicio</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
-        <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos</li><li>40 g avena</li><li>1 banana grande</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
-        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>70 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
-        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 claras + 2 yemas</li></ul></div>
-        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>50-60 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+        <div class="exercise" id="ex-vie-curl-mart"><button class="ex-check" onclick="toggleEx('vie-curl-mart')">✓</button><span class="name">Curl martillo</span><span class="sets">2×12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-curl-mart"><span class="weight-unit">kg</span></div>
+      </div>
+    </div>
+    <div class="section" id="vie-com">
+      <div class="section-header" onclick="toggle('vie-com')"><h3>COMIDAS</h3><div><span class="badge">5 comidas · día piernas</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos</li><li>50 g avena</li><li>1 banana grande</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>70 g arroz</li><li>Ensalada + 15 g aceite</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>Whey protein</li><li>Barrita Integra (15g prot)</li></ul></div>
+        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>60 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">POST-CENA</div><ul class="meal-items"><li>Yogur La Serenísima (15g prot)</li></ul></div>
+        <div class="macros-badge">
+          <div class="macro-item"><div class="macro-val">~195g</div><div class="macro-lbl">Proteína</div></div>
+          <div class="macro-item"><div class="macro-val">~230g</div><div class="macro-lbl">Carbos</div></div>
+          <div class="macro-item"><div class="macro-val">~65g</div><div class="macro-lbl">Grasa</div></div>
+          <div class="macro-item"><div class="macro-val">~2650</div><div class="macro-lbl">Kcal</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -588,7 +591,7 @@
   <!-- SABADO -->
   <div class="day-panel" id="day-sab">
     <div class="day-title"><div class="day-dot" style="background:#6b6b6b"></div><h2>SÁBADO</h2></div>
-    <div class="day-subtitle">Cardio</div>
+    <div class="day-subtitle">Cardio al aire libre</div>
     <div class="section" id="sab-cardio">
       <div class="section-header" onclick="toggle('sab-cardio')"><h3>CARDIO</h3><div><span class="badge">25-30 min</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
@@ -605,11 +608,17 @@
     <div class="section" id="sab-com">
       <div class="section-header" onclick="toggle('sab-com')"><h3>COMIDAS</h3><div><span class="badge">5 comidas</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
-        <div class="meal"><div class="meal-name">DESAYUNO (POST CARDIO)</div><ul class="meal-items"><li>3 huevos</li><li>30 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
-        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>45 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
-        <div class="meal"><div class="meal-name">FRUTA DEL DÍA</div><ul class="meal-items"><li>1 fruta (manzana / pera / naranja / 2 mandarinas)</li></ul></div>
-        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 claras + 2 yemas</li></ul></div>
-        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>30-40 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+        <div class="meal"><div class="meal-name">DESAYUNO (POST CARDIO)</div><ul class="meal-items"><li>3 huevos</li><li>50 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>50 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>Whey protein</li><li>Barrita Integra (15g prot)</li></ul></div>
+        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>40 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">POST-CENA</div><ul class="meal-items"><li>Yogur La Serenísima (15g prot)</li></ul></div>
+        <div class="macros-badge">
+          <div class="macro-item"><div class="macro-val">~190g</div><div class="macro-lbl">Proteína</div></div>
+          <div class="macro-item"><div class="macro-val">~190g</div><div class="macro-lbl">Carbos</div></div>
+          <div class="macro-item"><div class="macro-val">~60g</div><div class="macro-lbl">Grasa</div></div>
+          <div class="macro-item"><div class="macro-val">~2400</div><div class="macro-lbl">Kcal</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -617,15 +626,22 @@
   <!-- DOMINGO -->
   <div class="day-panel" id="day-dom">
     <div class="day-title"><div class="day-dot" style="background:#333"></div><h2>DOMINGO</h2></div>
-    <div class="day-subtitle">Descanso</div>
-    <div class="rest-message"><div class="rest-emoji">😴</div><div class="rest-text"><strong>Descanso total</strong><br>Recuperación y crecimiento</div></div>
+    <div class="day-subtitle">Descanso · Día de medición</div>
+    <div class="rest-message"><div class="rest-emoji">📏</div><div class="rest-text"><strong>Medición semanal</strong><br>Peso · Cintura · Foto frente y perfil<br><span style="color:var(--gold)">En ayunas, post baño, misma balanza</span></div></div>
     <div class="section" id="dom-com">
-      <div class="section-header" onclick="toggle('dom-com')"><h3>COMIDAS</h3><div><span class="badge">4 comidas</span><span class="chevron">▼</span></div></div>
+      <div class="section-header" onclick="toggle('dom-com')"><h3>COMIDAS</h3><div><span class="badge">5 comidas</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
-        <div class="meal"><div class="meal-name">DESAYUNO</div><ul class="meal-items"><li>3 huevos</li><li>30 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
-        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>40 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
-        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 claras + 2 yemas</li></ul></div>
-        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>20-30 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+        <div class="meal"><div class="meal-name">DESAYUNO</div><ul class="meal-items"><li>3 huevos</li><li>50 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>50 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>Whey protein</li><li>Barrita Integra (15g prot)</li></ul></div>
+        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>30 g arroz</li><li>Ensalada + 10 g aceite</li></ul></div>
+        <div class="meal"><div class="meal-name">POST-CENA</div><ul class="meal-items"><li>Yogur La Serenísima (15g prot)</li></ul></div>
+        <div class="macros-badge">
+          <div class="macro-item"><div class="macro-val">~185g</div><div class="macro-lbl">Proteína</div></div>
+          <div class="macro-item"><div class="macro-val">~175g</div><div class="macro-lbl">Carbos</div></div>
+          <div class="macro-item"><div class="macro-val">~60g</div><div class="macro-lbl">Grasa</div></div>
+          <div class="macro-item"><div class="macro-val">~2300</div><div class="macro-lbl">Kcal</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -634,18 +650,19 @@
   <div class="rules">
     <h3>REGLAS CLAVE</h3>
     <div class="rule-item"><span class="rule-icon">⚫</span><span>Creatina todos los días: 5 g</span></div>
-    <div class="rule-item"><span class="rule-icon">🍌</span><span>Entrenás en ayunas → banana siempre post entreno</span></div>
-    <div class="rule-item"><span class="rule-icon">🍎</span><span>Fruta reemplaza parte del arroz (ya ajustado)</span></div>
-    <div class="rule-item"><span class="rule-icon">🏃</span><span>Cardio suave → no matarte</span></div>
-    <div class="rule-item"><span class="rule-icon">⚖</span><span>Subida de peso controlada</span></div>
+    <div class="rule-item"><span class="rule-icon">🍌</span><span>Entrenás en ayunas 7am → banana siempre post entreno</span></div>
+    <div class="rule-item"><span class="rule-icon">🍎</span><span>Fruta en almuerzo y cena, sin sacrificar arroz</span></div>
+    <div class="rule-item"><span class="rule-icon">🏃</span><span>Cardio suave 2x/sem → no matarte</span></div>
+    <div class="rule-item"><span class="rule-icon">⚖</span><span>Subida 0.2-0.3 kg/sem · Si no subís → +10g arroz</span></div>
+    <div class="rule-item"><span class="rule-icon">💧</span><span>Mínimo 2.5L agua · 3L días entrenamiento · Mate no cuenta</span></div>
+    <div class="rule-item"><span class="rule-icon">💪</span><span>Progresión: tope del rango en todas las series → +2.5 kg</span></div>
+    <div class="rule-item"><span class="rule-icon">📏</span><span>Medición domingos: peso + cintura + foto</span></div>
   </div>
 
   <div class="reset-section">
     <button class="reset-btn" onclick="resetAll()">RESETEAR DATOS</button>
   </div>
-
   <div class="footer-brand">BRUNEITOR</div>
-
 </div>
 
 <script>
@@ -656,15 +673,10 @@ function showDay(day) {
   document.getElementById('day-' + day).classList.add('active');
   document.querySelector('.tab[data-day="' + day + '"]').classList.add('active');
 }
-
-function toggle(id) {
-  document.getElementById(id).classList.toggle('collapsed');
-}
+function toggle(id) { document.getElementById(id).classList.toggle('collapsed'); }
 
 // ===== EXERCISE CHECK =====
-function getChecks() {
-  try { return JSON.parse(localStorage.getItem('brn-checks') || '{}'); } catch(e) { return {}; }
-}
+function getChecks() { try { return JSON.parse(localStorage.getItem('brn-checks') || '{}'); } catch(e) { return {}; } }
 function toggleEx(id) {
   const checks = getChecks();
   const el = document.getElementById('ex-' + id);
@@ -682,9 +694,7 @@ function loadChecks() {
 }
 
 // ===== WEIGHT TRACKING =====
-function getWeights() {
-  try { return JSON.parse(localStorage.getItem('brn-weights') || '{}'); } catch(e) { return {}; }
-}
+function getWeights() { try { return JSON.parse(localStorage.getItem('brn-weights') || '{}'); } catch(e) { return {}; } }
 function saveWeight(key, val) {
   const w = getWeights();
   if (val === '' || val === null) { delete w[key]; } else { w[key] = val; }
@@ -694,8 +704,7 @@ function loadWeights() {
   const w = getWeights();
   document.querySelectorAll('.weight-input').forEach(input => {
     const key = input.dataset.ex;
-    if (w[key] !== undefined) input.value = w[key];
-    else input.value = '';
+    if (w[key] !== undefined) input.value = w[key]; else input.value = '';
   });
 }
 document.querySelectorAll('.weight-input').forEach(input => {
@@ -709,151 +718,102 @@ function toggleTimer(day) {
   const btn = document.getElementById('timer-' + day);
   const prog = document.getElementById('timer-prog-' + day);
   const fill = document.getElementById('timer-fill-' + day);
-
   if (timers[day]) {
-    clearInterval(timers[day].interval);
-    delete timers[day];
-    btn.className = 'rest-timer-btn';
-    btn.textContent = 'DESCANSO 1:30';
-    prog.classList.remove('visible');
-    fill.style.width = '0%';
-    return;
+    clearInterval(timers[day].interval); delete timers[day];
+    btn.className = 'rest-timer-btn'; btn.textContent = 'DESCANSO 1:30';
+    prog.classList.remove('visible'); fill.style.width = '0%'; return;
   }
-
-  const total = 90;
-  let remaining = total;
-  btn.className = 'rest-timer-btn active';
-  prog.classList.add('visible');
-
+  const total = 90; let remaining = total;
+  btn.className = 'rest-timer-btn active'; prog.classList.add('visible');
   function update() {
     const m = Math.floor(remaining / 60);
     const s = String(remaining % 60).padStart(2, '0');
     btn.textContent = m + ':' + s;
     fill.style.width = ((total - remaining) / total * 100) + '%';
-
     if (remaining <= 0) {
-      clearInterval(timers[day].interval);
-      delete timers[day];
-      btn.className = 'rest-timer-btn done';
-      btn.textContent = '¡DALE!';
+      clearInterval(timers[day].interval); delete timers[day];
+      btn.className = 'rest-timer-btn done'; btn.textContent = '¡DALE!';
       if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
-      setTimeout(() => {
-        btn.className = 'rest-timer-btn';
-        btn.textContent = 'DESCANSO 1:30';
-        prog.classList.remove('visible');
-        fill.style.width = '0%';
-      }, 3000);
+      setTimeout(() => { btn.className = 'rest-timer-btn'; btn.textContent = 'DESCANSO 1:30'; prog.classList.remove('visible'); fill.style.width = '0%'; }, 3000);
     }
     remaining--;
   }
+  update(); timers[day] = { interval: setInterval(update, 1000) };
+}
 
-  update();
-  timers[day] = { interval: setInterval(update, 1000) };
+// ===== WATER TRACKER =====
+function getWaterKey() { return 'brn-water-' + new Date().toISOString().slice(0,10); }
+function getWater() { try { return parseInt(localStorage.getItem(getWaterKey()) || '0'); } catch(e) { return 0; } }
+function changeWater(delta) {
+  let count = getWater() + delta;
+  if (count < 0) count = 0;
+  localStorage.setItem(getWaterKey(), count);
+  renderWater();
+}
+function renderWater() {
+  const count = getWater();
+  const goal = 10; // 10 vasos de 250ml = 2.5L
+  document.getElementById('water-count').textContent = count;
+  document.getElementById('water-goal-display').textContent = goal;
+  const pct = Math.min((count / goal) * 100, 100);
+  document.getElementById('water-fill').style.width = pct + '%';
+  if (pct >= 100) document.getElementById('water-fill').style.background = 'var(--green)';
+  else document.getElementById('water-fill').style.background = 'var(--cyan)';
 }
 
 // ===== CREATINE TRACKER =====
 let weekOffset = 0;
-
-function getCreatineData() {
-  try { return JSON.parse(localStorage.getItem('brn-creatine') || '{}'); } catch(e) { return {}; }
-}
-
+function getCreatineData() { try { return JSON.parse(localStorage.getItem('brn-creatine') || '{}'); } catch(e) { return {}; } }
 function toggleCreatine(dateStr) {
   const data = getCreatineData();
   if (data[dateStr]) { delete data[dateStr]; } else { data[dateStr] = true; }
   localStorage.setItem('brn-creatine', JSON.stringify(data));
-  renderCreatineWeek();
-  updateStreak();
+  renderCreatineWeek(); updateStreak();
 }
-
 function getMonday(d) {
-  const date = new Date(d);
-  const day = date.getDay();
+  const date = new Date(d); const day = date.getDay();
   const diff = date.getDate() - day + (day === 0 ? -6 : 1);
   return new Date(date.setDate(diff));
 }
-
-function formatDate(d) {
-  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-}
-
+function formatDate(d) { return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
 function renderCreatineWeek() {
-  const today = new Date();
-  const todayStr = formatDate(today);
-  const monday = getMonday(today);
-  monday.setDate(monday.getDate() + weekOffset * 7);
-
+  const today = new Date(); const todayStr = formatDate(today);
+  const monday = getMonday(today); monday.setDate(monday.getDate() + weekOffset * 7);
   const dayNames = ['L','M','X','J','V','S','D'];
   const monthNames = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
   const data = getCreatineData();
-  const container = document.getElementById('creatine-week');
-  container.innerHTML = '';
-
-  const weekStart = new Date(monday);
-  const weekEnd = new Date(monday);
-  weekEnd.setDate(weekEnd.getDate() + 6);
-  document.getElementById('week-label').textContent =
-    weekStart.getDate() + ' ' + monthNames[weekStart.getMonth()] + ' — ' +
-    weekEnd.getDate() + ' ' + monthNames[weekEnd.getMonth()];
-
+  const container = document.getElementById('creatine-week'); container.innerHTML = '';
+  const weekStart = new Date(monday); const weekEnd = new Date(monday); weekEnd.setDate(weekEnd.getDate() + 6);
+  document.getElementById('week-label').textContent = weekStart.getDate() + ' ' + monthNames[weekStart.getMonth()] + ' — ' + weekEnd.getDate() + ' ' + monthNames[weekEnd.getMonth()];
   for (let i = 0; i < 7; i++) {
-    const d = new Date(monday);
-    d.setDate(d.getDate() + i);
-    const dateStr = formatDate(d);
-    const isToday = dateStr === todayStr;
-    const isPast = d < today && !isToday;
-    const isChecked = !!data[dateStr];
-
-    const dayEl = document.createElement('div');
-    dayEl.className = 'creatine-day';
-    dayEl.innerHTML =
-      '<span class="day-label">' + dayNames[i] + '</span>' +
-      '<span class="day-num">' + d.getDate() + '</span>' +
-      '<button class="creatine-check' +
-        (isChecked ? ' checked' : '') +
-        (isToday ? ' today' : '') +
-        (isPast && !isChecked ? ' past' : '') +
-      '" onclick="toggleCreatine(\'' + dateStr + '\')">' +
-        (isChecked ? '✓' : '') +
-      '</button>';
+    const d = new Date(monday); d.setDate(d.getDate() + i);
+    const dateStr = formatDate(d); const isToday = dateStr === todayStr;
+    const isPast = d < today && !isToday; const isChecked = !!data[dateStr];
+    const dayEl = document.createElement('div'); dayEl.className = 'creatine-day';
+    dayEl.innerHTML = '<span class="day-label">' + dayNames[i] + '</span><span class="day-num">' + d.getDate() + '</span><button class="creatine-check' + (isChecked ? ' checked' : '') + (isToday ? ' today' : '') + (isPast && !isChecked ? ' past' : '') + '" onclick="toggleCreatine(\'' + dateStr + '\')">' + (isChecked ? '✓' : '') + '</button>';
     container.appendChild(dayEl);
   }
 }
-
-function changeWeek(dir) {
-  weekOffset += dir;
-  renderCreatineWeek();
-}
-
+function changeWeek(dir) { weekOffset += dir; renderCreatineWeek(); }
 function updateStreak() {
-  const data = getCreatineData();
-  const today = new Date();
-  let streak = 0;
+  const data = getCreatineData(); const today = new Date(); let streak = 0;
   const d = new Date(today);
   if (!data[formatDate(d)]) { d.setDate(d.getDate() - 1); }
   while (data[formatDate(d)]) { streak++; d.setDate(d.getDate() - 1); }
-
   const el = document.getElementById('streak-text');
-  if (streak === 0) {
-    el.textContent = '⚠ No tomaste creatina hoy';
-    el.style.color = '#FF1744';
-  } else {
-    el.textContent = '🔥 ' + streak + ' día' + (streak > 1 ? 's' : '') + ' seguidos';
-    el.style.color = '#00E676';
-  }
+  if (streak === 0) { el.textContent = '⚠ No tomaste creatina hoy'; el.style.color = '#FF1744'; }
+  else { el.textContent = '🔥 ' + streak + ' día' + (streak > 1 ? 's' : '') + ' seguidos'; el.style.color = '#00E676'; }
 }
 
 // ===== RESET =====
 function resetAll() {
-  if (confirm('¿Borrar todos los datos guardados? (pesos, checks, creatina)')) {
-    localStorage.removeItem('brn-weights');
-    localStorage.removeItem('brn-checks');
-    localStorage.removeItem('brn-creatine');
+  if (confirm('¿Borrar todos los datos guardados? (pesos, checks, creatina, agua)')) {
+    localStorage.removeItem('brn-weights'); localStorage.removeItem('brn-checks');
+    localStorage.removeItem('brn-creatine'); localStorage.removeItem(getWaterKey());
     loadWeights();
     document.querySelectorAll('.exercise').forEach(el => el.classList.remove('done'));
     document.querySelectorAll('.ex-check').forEach(el => el.classList.remove('checked'));
-    renderCreatineWeek();
-    updateStreak();
+    renderCreatineWeek(); updateStreak(); renderWater();
     alert('Datos reseteados');
   }
 }
@@ -861,11 +821,7 @@ function resetAll() {
 // ===== INIT =====
 const days = ['dom','lun','mar','mie','jue','vie','sab'];
 showDay(days[new Date().getDay()]);
-loadWeights();
-loadChecks();
-renderCreatineWeek();
-updateStreak();
+loadWeights(); loadChecks(); renderCreatineWeek(); updateStreak(); renderWater();
 </script>
-
 </body>
 </html>
