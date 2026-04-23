@@ -363,7 +363,7 @@
     <div class="brand-logo">B</div>
     <h1>BRUNEI<span>TOR</span></h1>
   </div>
-  <div class="header-sub">Volumen limpio · 68 → 72 kg</div>
+  <div class="header-sub">Upper/Lower · Volumen limpio · 68 → 72 kg</div>
 </div>
 
 <!-- CREATINE -->
@@ -421,89 +421,97 @@
 
 <div class="content">
 
-  <!-- LUNES -->
+  <!-- ============ LUNES — UPPER A ============ -->
   <div class="day-panel" id="day-lun">
-    <div class="day-title"><div class="day-dot" style="background:var(--accent)"></div><h2>LUNES</h2></div>
-    <div class="day-subtitle">Pecho + Tríceps · 7am ayunas · Pilates 20hs</div>
+    <div class="day-title"><div class="day-dot" style="background:var(--accent)"></div><h2>LUNES — UPPER A</h2></div>
+    <div class="day-subtitle">Pecho fuerte + Espalda liviana + Tríceps · 7am · Pilates 20hs</div>
     <div class="rest-timer-bar">
       <button class="rest-timer-btn" id="timer-lun" onclick="toggleTimer('lun')">DESCANSO 1:30</button>
       <div class="rest-timer-progress" id="timer-prog-lun"><div class="rest-timer-fill" id="timer-fill-lun"></div></div>
     </div>
-    <div class="section" id="lun-ej">
-      <div class="section-header" onclick="toggle('lun-ej')"><h3>EJERCICIOS</h3><div><span class="badge">7 ejercicios</span><span class="chevron">▼</span></div></div>
+    <div class="section" id="lun-pecho">
+      <div class="section-header" onclick="toggle('lun-pecho')"><h3>PECHO (FUERTE)</h3><div><span class="badge">3 ejercicios</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
         <div class="exercise" id="ex-lun-press-banca"><button class="ex-check" onclick="toggleEx('lun-press-banca')">✓</button><span class="name">Press banca</span><span class="sets">4×6-8</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-press-banca"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-lun-press-inclinado"><button class="ex-check" onclick="toggleEx('lun-press-inclinado')">✓</button><span class="name">Press inclinado</span><span class="sets">3×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-press-inclinado"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-lun-press-inc"><button class="ex-check" onclick="toggleEx('lun-press-inc')">✓</button><span class="name">Press inclinado manc.</span><span class="sets">3×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-press-inc"><span class="weight-unit">kg</span></div>
         <div class="exercise" id="ex-lun-maq-pecho"><button class="ex-check" onclick="toggleEx('lun-maq-pecho')">✓</button><span class="name">Máquina pecho</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-maq-pecho"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-lun-cruces"><button class="ex-check" onclick="toggleEx('lun-cruces')">✓</button><span class="name">Cruces</span><span class="sets">3×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-cruces"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-lun-fondos"><button class="ex-check" onclick="toggleEx('lun-fondos')">✓</button><span class="name">Fondos</span><span class="sets">3×6-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-fondos"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-lun-tri-polea"><button class="ex-check" onclick="toggleEx('lun-tri-polea')">✓</button><span class="name">Tríceps polea</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-tri-polea"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-lun-ext-overhead"><button class="ex-check" onclick="toggleEx('lun-ext-overhead')">✓</button><span class="name">Extensión overhead</span><span class="sets">2-3×12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-ext-overhead"><span class="weight-unit">kg</span></div>
       </div>
     </div>
-    <div class="section" id="lun-com">
-      <div class="section-header" onclick="toggle('lun-com')"><h3>COMIDAS</h3><div><span class="badge">6 comidas</span><span class="chevron">▼</span></div></div>
+    <div class="section" id="lun-espalda">
+      <div class="section-header" onclick="toggle('lun-espalda')"><h3>ESPALDA (LIVIANA)</h3><div><span class="badge">2 ejercicios</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="exercise" id="ex-lun-remo-polea"><button class="ex-check" onclick="toggleEx('lun-remo-polea')">✓</button><span class="name">Remo polea</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-remo-polea"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-lun-jalon"><button class="ex-check" onclick="toggleEx('lun-jalon')">✓</button><span class="name">Jalón neutro</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-jalon"><span class="weight-unit">kg</span></div>
+      </div>
+    </div>
+    <div class="section" id="lun-tri">
+      <div class="section-header" onclick="toggle('lun-tri')"><h3>TRÍCEPS</h3><div><span class="badge">2 ejercicios</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="exercise" id="ex-lun-tri-polea"><button class="ex-check" onclick="toggleEx('lun-tri-polea')">✓</button><span class="name">Tríceps polea</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-tri-polea"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-lun-overhead"><button class="ex-check" onclick="toggleEx('lun-overhead')">✓</button><span class="name">Extensión overhead</span><span class="sets">3×12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-overhead"><span class="weight-unit">kg</span></div>
+      </div>
+    </div>
+    <div class="section collapsed" id="lun-com">
+      <div class="section-header" onclick="toggle('lun-com')"><h3>COMIDAS</h3><div><span class="badge">~2550 kcal</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
         <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos (2 enteros + 1 clara)</li><li>50 g avena</li><li>1 banana</li><li>150-200 ml leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
-        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g pollo o carne</li><li>70 g arroz crudo</li><li>Ensalada + 15 g aceite</li><li>1 fruta</li></ul></div>
-        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>Whey protein</li><li>Barrita Integra (15g prot)</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína (rotar pollo/carne/pescado)</li><li>70 g arroz crudo</li><li>Ensalada variada + 15 g aceite oliva</li><li>15-20 g almendras o nueces</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 huevos (3 claras + 2 yemas)</li><li>1 tostada pan integral 30g</li></ul></div>
         <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>50 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
         <div class="meal"><div class="meal-name">POST-CENA</div><ul class="meal-items"><li>Yogur La Serenísima (15g prot)</li></ul></div>
         <div class="macros-badge">
-          <div class="macro-item"><div class="macro-val">~195g</div><div class="macro-lbl">Proteína</div></div>
-          <div class="macro-item"><div class="macro-val">~210g</div><div class="macro-lbl">Carbos</div></div>
-          <div class="macro-item"><div class="macro-val">~65g</div><div class="macro-lbl">Grasa</div></div>
+          <div class="macro-item"><div class="macro-val">~195g</div><div class="macro-lbl">Prot</div></div>
+          <div class="macro-item"><div class="macro-val">~215g</div><div class="macro-lbl">Carbs</div></div>
+          <div class="macro-item"><div class="macro-val">~70g</div><div class="macro-lbl">Grasa</div></div>
           <div class="macro-item"><div class="macro-val">~2550</div><div class="macro-lbl">Kcal</div></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- MARTES -->
+  <!-- ============ MARTES — LOWER A ============ -->
   <div class="day-panel" id="day-mar">
-    <div class="day-title"><div class="day-dot" style="background:var(--blue)"></div><h2>MARTES</h2></div>
-    <div class="day-subtitle">Espalda + Bíceps · 7am ayunas</div>
+    <div class="day-title"><div class="day-dot" style="background:var(--blue)"></div><h2>MARTES — LOWER A</h2></div>
+    <div class="day-subtitle">Piernas fuerte · 7am ayunas</div>
     <div class="rest-timer-bar">
       <button class="rest-timer-btn" id="timer-mar" onclick="toggleTimer('mar')">DESCANSO 1:30</button>
       <div class="rest-timer-progress" id="timer-prog-mar"><div class="rest-timer-fill" id="timer-fill-mar"></div></div>
     </div>
-    <div class="section" id="mar-ej">
-      <div class="section-header" onclick="toggle('mar-ej')"><h3>EJERCICIOS</h3><div><span class="badge">7 ejercicios</span><span class="chevron">▼</span></div></div>
+    <div class="section" id="mar-piernas">
+      <div class="section-header" onclick="toggle('mar-piernas')"><h3>PIERNAS (FUERTE)</h3><div><span class="badge">5 ejercicios</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
-        <div class="exercise" id="ex-mar-dominadas"><button class="ex-check" onclick="toggleEx('mar-dominadas')">✓</button><span class="name">Dominadas</span><span class="sets">4×6-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-dominadas"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-mar-remo"><button class="ex-check" onclick="toggleEx('mar-remo')">✓</button><span class="name">Remo</span><span class="sets">3×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-remo"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-mar-jalon"><button class="ex-check" onclick="toggleEx('mar-jalon')">✓</button><span class="name">Jalón</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-jalon"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-mar-remo-polea"><button class="ex-check" onclick="toggleEx('mar-remo-polea')">✓</button><span class="name">Remo polea</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-remo-polea"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-mar-curl-barra"><button class="ex-check" onclick="toggleEx('mar-curl-barra')">✓</button><span class="name">Curl barra</span><span class="sets">3×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-curl-barra"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-mar-curl-inclinado"><button class="ex-check" onclick="toggleEx('mar-curl-inclinado')">✓</button><span class="name">Curl inclinado</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-curl-inclinado"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-mar-martillo"><button class="ex-check" onclick="toggleEx('mar-martillo')">✓</button><span class="name">Martillo</span><span class="sets">2-3×12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-martillo"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-mar-sentadilla"><button class="ex-check" onclick="toggleEx('mar-sentadilla')">✓</button><span class="name">Sentadilla</span><span class="sets">4×6-8</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-sentadilla"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-mar-pmr"><button class="ex-check" onclick="toggleEx('mar-pmr')">✓</button><span class="name">Peso muerto rumano</span><span class="sets">3×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-pmr"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-mar-prensa"><button class="ex-check" onclick="toggleEx('mar-prensa')">✓</button><span class="name">Prensa</span><span class="sets">3×10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-prensa"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-mar-bulgaras"><button class="ex-check" onclick="toggleEx('mar-bulgaras')">✓</button><span class="name">Búlgaras</span><span class="sets">3×8</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-bulgaras"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-mar-gemelos"><button class="ex-check" onclick="toggleEx('mar-gemelos')">✓</button><span class="name">Gemelos</span><span class="sets">4×15-20</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-gemelos"><span class="weight-unit">kg</span></div>
       </div>
     </div>
-    <div class="section" id="mar-com">
-      <div class="section-header" onclick="toggle('mar-com')"><h3>COMIDAS</h3><div><span class="badge">5 comidas</span><span class="chevron">▼</span></div></div>
+    <div class="section collapsed" id="mar-com">
+      <div class="section-header" onclick="toggle('mar-com')"><h3>COMIDAS</h3><div><span class="badge">~2550 kcal</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
         <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos</li><li>50 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
-        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>70 g arroz</li><li>Ensalada + 15 g aceite</li><li>1 fruta</li></ul></div>
-        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>Whey protein</li><li>Barrita Integra (15g prot)</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína (rotar pollo/carne/pescado)</li><li>70 g arroz</li><li>Ensalada variada + 15 g aceite</li><li>15-20 g almendras/nueces</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 huevos (3 claras + 2 yemas)</li><li>1 tostada pan integral 30g</li></ul></div>
         <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>50 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
         <div class="meal"><div class="meal-name">POST-CENA</div><ul class="meal-items"><li>Yogur La Serenísima (15g prot)</li></ul></div>
         <div class="macros-badge">
-          <div class="macro-item"><div class="macro-val">~195g</div><div class="macro-lbl">Proteína</div></div>
-          <div class="macro-item"><div class="macro-val">~210g</div><div class="macro-lbl">Carbos</div></div>
-          <div class="macro-item"><div class="macro-val">~65g</div><div class="macro-lbl">Grasa</div></div>
+          <div class="macro-item"><div class="macro-val">~195g</div><div class="macro-lbl">Prot</div></div>
+          <div class="macro-item"><div class="macro-val">~215g</div><div class="macro-lbl">Carbs</div></div>
+          <div class="macro-item"><div class="macro-val">~70g</div><div class="macro-lbl">Grasa</div></div>
           <div class="macro-item"><div class="macro-val">~2550</div><div class="macro-lbl">Kcal</div></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- MIERCOLES -->
+  <!-- ============ MIÉRCOLES — DESCANSO ============ -->
   <div class="day-panel" id="day-mie">
     <div class="day-title"><div class="day-dot" style="background:var(--purple)"></div><h2>MIÉRCOLES</h2></div>
     <div class="day-subtitle">Descanso · Oficina</div>
     <div class="rest-message"><div class="rest-emoji">😴</div><div class="rest-text"><strong>Día de descanso</strong><br>Recuperación muscular</div></div>
     <div class="section" id="mie-com">
-      <div class="section-header" onclick="toggle('mie-com')"><h3>COMIDAS</h3><div><span class="badge">5 comidas</span><span class="chevron">▼</span></div></div>
+      <div class="section-header" onclick="toggle('mie-com')"><h3>COMIDAS</h3><div><span class="badge">~2300 kcal</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
         <div class="meal"><div class="meal-name">DESAYUNO</div><ul class="meal-items"><li>3 huevos</li><li>50 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
         <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>50 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
@@ -511,8 +519,8 @@
         <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>30 g arroz</li><li>Ensalada + 10 g aceite</li></ul></div>
         <div class="meal"><div class="meal-name">POST-CENA</div><ul class="meal-items"><li>Yogur La Serenísima (15g prot)</li></ul></div>
         <div class="macros-badge">
-          <div class="macro-item"><div class="macro-val">~185g</div><div class="macro-lbl">Proteína</div></div>
-          <div class="macro-item"><div class="macro-val">~175g</div><div class="macro-lbl">Carbos</div></div>
+          <div class="macro-item"><div class="macro-val">~190g</div><div class="macro-lbl">Prot</div></div>
+          <div class="macro-item"><div class="macro-val">~175g</div><div class="macro-lbl">Carbs</div></div>
           <div class="macro-item"><div class="macro-val">~60g</div><div class="macro-lbl">Grasa</div></div>
           <div class="macro-item"><div class="macro-val">~2300</div><div class="macro-lbl">Kcal</div></div>
         </div>
@@ -520,112 +528,108 @@
     </div>
   </div>
 
-  <!-- JUEVES -->
+  <!-- ============ JUEVES — UPPER B ============ -->
   <div class="day-panel" id="day-jue">
-    <div class="day-title"><div class="day-dot" style="background:var(--gold)"></div><h2>JUEVES</h2></div>
-    <div class="day-subtitle">Hombros + Core + Brazos + Cardio · 7am ayunas</div>
+    <div class="day-title"><div class="day-dot" style="background:var(--gold)"></div><h2>JUEVES — UPPER B</h2></div>
+    <div class="day-subtitle">Espalda fuerte + Hombros + Pecho liviano + Bíceps · 7am</div>
     <div class="rest-timer-bar">
       <button class="rest-timer-btn" id="timer-jue" onclick="toggleTimer('jue')">DESCANSO 1:30</button>
       <div class="rest-timer-progress" id="timer-prog-jue"><div class="rest-timer-fill" id="timer-fill-jue"></div></div>
     </div>
-    <div class="section" id="jue-ej">
-      <div class="section-header" onclick="toggle('jue-ej')"><h3>EJERCICIOS</h3><div><span class="badge">5 ejercicios</span><span class="chevron">▼</span></div></div>
+    <div class="section" id="jue-espalda">
+      <div class="section-header" onclick="toggle('jue-espalda')"><h3>ESPALDA (FUERTE)</h3><div><span class="badge">3 ejercicios</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
-        <div class="exercise" id="ex-jue-press-militar"><button class="ex-check" onclick="toggleEx('jue-press-militar')">✓</button><span class="name">Press militar</span><span class="sets">4×6-8</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-press-militar"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-jue-laterales"><button class="ex-check" onclick="toggleEx('jue-laterales')">✓</button><span class="name">Laterales</span><span class="sets">4×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-laterales"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-jue-posteriores"><button class="ex-check" onclick="toggleEx('jue-posteriores')">✓</button><span class="name">Posteriores</span><span class="sets">3×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-posteriores"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-jue-maq-hombro"><button class="ex-check" onclick="toggleEx('jue-maq-hombro')">✓</button><span class="name">Máquina hombro</span><span class="sets">3×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-maq-hombro"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-jue-encogimientos"><button class="ex-check" onclick="toggleEx('jue-encogimientos')">✓</button><span class="name">Encogimientos</span><span class="sets">3×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-encogimientos"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-jue-dominadas"><button class="ex-check" onclick="toggleEx('jue-dominadas')">✓</button><span class="name">Dominadas</span><span class="sets">4×6-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-dominadas"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-jue-remo"><button class="ex-check" onclick="toggleEx('jue-remo')">✓</button><span class="name">Remo barra</span><span class="sets">3×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-remo"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-jue-remo-manc"><button class="ex-check" onclick="toggleEx('jue-remo-manc')">✓</button><span class="name">Remo mancuerna</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-remo-manc"><span class="weight-unit">kg</span></div>
       </div>
     </div>
-    <div class="section" id="jue-brazos">
-      <div class="section-header" onclick="toggle('jue-brazos')"><h3>BRAZOS</h3><div><span class="badge">2 ejercicios</span><span class="chevron">▼</span></div></div>
+    <div class="section" id="jue-hombros">
+      <div class="section-header" onclick="toggle('jue-hombros')"><h3>HOMBROS</h3><div><span class="badge">2 ejercicios</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
-        <div class="exercise" id="ex-jue-curl"><button class="ex-check" onclick="toggleEx('jue-curl')">✓</button><span class="name">Curl barra o mancuernas</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-curl"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-jue-tri-inv"><button class="ex-check" onclick="toggleEx('jue-tri-inv')">✓</button><span class="name">Tríceps agarre inverso</span><span class="sets">3×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-tri-inv"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-jue-press-mil"><button class="ex-check" onclick="toggleEx('jue-press-mil')">✓</button><span class="name">Press militar</span><span class="sets">3×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-press-mil"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-jue-laterales"><button class="ex-check" onclick="toggleEx('jue-laterales')">✓</button><span class="name">Laterales</span><span class="sets">3×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-laterales"><span class="weight-unit">kg</span></div>
       </div>
     </div>
-    <div class="section" id="jue-core">
-      <div class="section-header" onclick="toggle('jue-core')"><h3>CORE</h3><div><span class="badge">2 ejercicios</span><span class="chevron">▼</span></div></div>
+    <div class="section" id="jue-pecho">
+      <div class="section-header" onclick="toggle('jue-pecho')"><h3>PECHO (LIVIANO)</h3><div><span class="badge">1 ejercicio</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
-        <div class="exercise"><span class="name" style="padding-left:34px">Plancha</span><span class="sets">3×30-45s</span></div>
-        <div class="exercise"><span class="name" style="padding-left:34px">Crunch</span><span class="sets">3×12</span></div>
+        <div class="exercise" id="ex-jue-cruces"><button class="ex-check" onclick="toggleEx('jue-cruces')">✓</button><span class="name">Cruces</span><span class="sets">3×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-cruces"><span class="weight-unit">kg</span></div>
       </div>
     </div>
-    <div class="section" id="jue-cardio">
-      <div class="section-header" onclick="toggle('jue-cardio')"><h3>CARDIO</h3><div><span class="badge">caminata</span><span class="chevron">▼</span></div></div>
+    <div class="section" id="jue-biceps">
+      <div class="section-header" onclick="toggle('jue-biceps')"><h3>BÍCEPS</h3><div><span class="badge">2 ejercicios</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
-        <div class="cardio-info">
-          <div class="row"><span class="label">Tipo</span><span class="value">Caminata en cinta</span></div>
-          <div class="row"><span class="label">Velocidad</span><span class="value">5-6 km/h</span></div>
-          <div class="row"><span class="label">Inclinación</span><span class="value">5-8%</span></div>
-          <div class="row"><span class="label">Duración</span><span class="value">20-25 min</span></div>
-        </div>
+        <div class="exercise" id="ex-jue-curl"><button class="ex-check" onclick="toggleEx('jue-curl')">✓</button><span class="name">Curl barra</span><span class="sets">3×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-curl"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-jue-martillo"><button class="ex-check" onclick="toggleEx('jue-martillo')">✓</button><span class="name">Curl martillo</span><span class="sets">3×12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-martillo"><span class="weight-unit">kg</span></div>
       </div>
     </div>
-    <div class="section" id="jue-com">
-      <div class="section-header" onclick="toggle('jue-com')"><h3>COMIDAS</h3><div><span class="badge">5 comidas</span><span class="chevron">▼</span></div></div>
+    <div class="section collapsed" id="jue-com">
+      <div class="section-header" onclick="toggle('jue-com')"><h3>COMIDAS</h3><div><span class="badge">~2550 kcal</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
         <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos</li><li>50 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
-        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>70 g arroz</li><li>Ensalada + 15 g aceite</li><li>1 fruta</li></ul></div>
-        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>Whey protein</li><li>Barrita Integra (15g prot)</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína (rotar pollo/carne/pescado)</li><li>70 g arroz</li><li>Ensalada variada + 15 g aceite</li><li>15-20 g almendras/nueces</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 huevos (3 claras + 2 yemas)</li><li>1 tostada pan integral 30g</li></ul></div>
         <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>50 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
         <div class="meal"><div class="meal-name">POST-CENA</div><ul class="meal-items"><li>Yogur La Serenísima (15g prot)</li></ul></div>
         <div class="macros-badge">
-          <div class="macro-item"><div class="macro-val">~195g</div><div class="macro-lbl">Proteína</div></div>
-          <div class="macro-item"><div class="macro-val">~210g</div><div class="macro-lbl">Carbos</div></div>
-          <div class="macro-item"><div class="macro-val">~65g</div><div class="macro-lbl">Grasa</div></div>
+          <div class="macro-item"><div class="macro-val">~195g</div><div class="macro-lbl">Prot</div></div>
+          <div class="macro-item"><div class="macro-val">~215g</div><div class="macro-lbl">Carbs</div></div>
+          <div class="macro-item"><div class="macro-val">~70g</div><div class="macro-lbl">Grasa</div></div>
           <div class="macro-item"><div class="macro-val">~2550</div><div class="macro-lbl">Kcal</div></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- VIERNES -->
+  <!-- ============ VIERNES — LOWER B ============ -->
   <div class="day-panel" id="day-vie">
-    <div class="day-title"><div class="day-dot" style="background:var(--green)"></div><h2>VIERNES</h2></div>
-    <div class="day-subtitle">Piernas + Brazos · 7am ayunas</div>
+    <div class="day-title"><div class="day-dot" style="background:var(--green)"></div><h2>VIERNES — LOWER B</h2></div>
+    <div class="day-subtitle">Piernas variante + Cardio · 7am ayunas</div>
     <div class="rest-timer-bar">
       <button class="rest-timer-btn" id="timer-vie" onclick="toggleTimer('vie')">DESCANSO 1:30</button>
       <div class="rest-timer-progress" id="timer-prog-vie"><div class="rest-timer-fill" id="timer-fill-vie"></div></div>
     </div>
-    <div class="section" id="vie-ej">
-      <div class="section-header" onclick="toggle('vie-ej')"><h3>EJERCICIOS</h3><div><span class="badge">7 ejercicios</span><span class="chevron">▼</span></div></div>
+    <div class="section" id="vie-piernas">
+      <div class="section-header" onclick="toggle('vie-piernas')"><h3>PIERNAS (VARIANTE)</h3><div><span class="badge">5 ejercicios</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
-        <div class="exercise" id="ex-vie-sentadilla"><button class="ex-check" onclick="toggleEx('vie-sentadilla')">✓</button><span class="name">Sentadilla</span><span class="sets">4×6-8</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-sentadilla"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-vie-pm-rumano"><button class="ex-check" onclick="toggleEx('vie-pm-rumano')">✓</button><span class="name">Peso muerto rumano</span><span class="sets">3×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-pm-rumano"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-vie-prensa"><button class="ex-check" onclick="toggleEx('vie-prensa')">✓</button><span class="name">Prensa</span><span class="sets">3×10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-prensa"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-vie-bulgaras"><button class="ex-check" onclick="toggleEx('vie-bulgaras')">✓</button><span class="name">Búlgaras</span><span class="sets">3×8</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-bulgaras"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-vie-cuadriceps"><button class="ex-check" onclick="toggleEx('vie-cuadriceps')">✓</button><span class="name">Cuádriceps</span><span class="sets">3×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-cuadriceps"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-vie-isquios"><button class="ex-check" onclick="toggleEx('vie-isquios')">✓</button><span class="name">Isquios</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-isquios"><span class="weight-unit">kg</span></div>
-        <div class="exercise" id="ex-vie-gemelos"><button class="ex-check" onclick="toggleEx('vie-gemelos')">✓</button><span class="name">Gemelos</span><span class="sets">4×15-20</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-gemelos"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-vie-prensa"><button class="ex-check" onclick="toggleEx('vie-prensa')">✓</button><span class="name">Prensa</span><span class="sets">4×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-prensa"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-vie-hack"><button class="ex-check" onclick="toggleEx('vie-hack')">✓</button><span class="name">Hack squat o goblet</span><span class="sets">3×10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-hack"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-vie-cuad"><button class="ex-check" onclick="toggleEx('vie-cuad')">✓</button><span class="name">Cuádriceps extensión</span><span class="sets">3×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-cuad"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-vie-isquios"><button class="ex-check" onclick="toggleEx('vie-isquios')">✓</button><span class="name">Isquios curl</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-isquios"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-vie-gemelos"><button class="ex-check" onclick="toggleEx('vie-gemelos')">✓</button><span class="name">Gemelos</span><span class="sets">3×15-20</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-gemelos"><span class="weight-unit">kg</span></div>
       </div>
     </div>
-    <div class="section" id="vie-brazos">
-      <div class="section-header" onclick="toggle('vie-brazos')"><h3>BRAZOS (EXTRA)</h3><div><span class="badge">1 ejercicio</span><span class="chevron">▼</span></div></div>
+    <div class="section" id="vie-cardio">
+      <div class="section-header" onclick="toggle('vie-cardio')"><h3>CARDIO</h3><div><span class="badge">20 min</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
-        <div class="exercise" id="ex-vie-curl-mart"><button class="ex-check" onclick="toggleEx('vie-curl-mart')">✓</button><span class="name">Curl martillo</span><span class="sets">2×12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-curl-mart"><span class="weight-unit">kg</span></div>
+        <div class="cardio-info">
+          <div class="row"><span class="label">Tipo</span><span class="value">Caminata en cinta</span></div>
+          <div class="row"><span class="label">Velocidad</span><span class="value">5-6 km/h</span></div>
+          <div class="row"><span class="label">Inclinación</span><span class="value">5-8%</span></div>
+          <div class="row"><span class="label">Duración</span><span class="value">20 min</span></div>
+        </div>
       </div>
     </div>
-    <div class="section" id="vie-com">
-      <div class="section-header" onclick="toggle('vie-com')"><h3>COMIDAS</h3><div><span class="badge">5 comidas · día piernas</span><span class="chevron">▼</span></div></div>
+    <div class="section collapsed" id="vie-com">
+      <div class="section-header" onclick="toggle('vie-com')"><h3>COMIDAS</h3><div><span class="badge">~2550 kcal</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
-        <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos</li><li>50 g avena</li><li>1 banana grande</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
-        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>70 g arroz</li><li>Ensalada + 15 g aceite</li><li>1 fruta</li></ul></div>
-        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>Whey protein</li><li>Barrita Integra (15g prot)</li></ul></div>
-        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>60 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos</li><li>50 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>70 g arroz</li><li>Ensalada variada + 15 g aceite</li><li>15-20 g almendras/nueces</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 huevos (3 claras + 2 yemas)</li><li>1 tostada pan integral 30g</li></ul></div>
+        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>50 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
         <div class="meal"><div class="meal-name">POST-CENA</div><ul class="meal-items"><li>Yogur La Serenísima (15g prot)</li></ul></div>
         <div class="macros-badge">
-          <div class="macro-item"><div class="macro-val">~195g</div><div class="macro-lbl">Proteína</div></div>
-          <div class="macro-item"><div class="macro-val">~230g</div><div class="macro-lbl">Carbos</div></div>
-          <div class="macro-item"><div class="macro-val">~65g</div><div class="macro-lbl">Grasa</div></div>
-          <div class="macro-item"><div class="macro-val">~2650</div><div class="macro-lbl">Kcal</div></div>
+          <div class="macro-item"><div class="macro-val">~195g</div><div class="macro-lbl">Prot</div></div>
+          <div class="macro-item"><div class="macro-val">~215g</div><div class="macro-lbl">Carbs</div></div>
+          <div class="macro-item"><div class="macro-val">~70g</div><div class="macro-lbl">Grasa</div></div>
+          <div class="macro-item"><div class="macro-val">~2550</div><div class="macro-lbl">Kcal</div></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SABADO -->
+  <!-- ============ SÁBADO — CARDIO ============ -->
   <div class="day-panel" id="day-sab">
     <div class="day-title"><div class="day-dot" style="background:#6b6b6b"></div><h2>SÁBADO</h2></div>
     <div class="day-subtitle">Cardio al aire libre</div>
@@ -643,52 +647,51 @@
       </div>
     </div>
     <div class="section" id="sab-com">
-      <div class="section-header" onclick="toggle('sab-com')"><h3>COMIDAS</h3><div><span class="badge">5 comidas</span><span class="chevron">▼</span></div></div>
+      <div class="section-header" onclick="toggle('sab-com')"><h3>COMIDAS</h3><div><span class="badge">~2400 kcal</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
         <div class="meal"><div class="meal-name">DESAYUNO (POST CARDIO)</div><ul class="meal-items"><li>3 huevos</li><li>50 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
-        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>50 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
-        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>Whey protein</li><li>Barrita Integra (15g prot)</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>60 g arroz</li><li>Ensalada + 10 g aceite</li><li>15-20 g almendras/nueces</li><li>1 fruta</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 huevos (3 claras + 2 yemas)</li><li>1 tostada pan integral 30g</li></ul></div>
         <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>40 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
         <div class="meal"><div class="meal-name">POST-CENA</div><ul class="meal-items"><li>Yogur La Serenísima (15g prot)</li></ul></div>
         <div class="macros-badge">
-          <div class="macro-item"><div class="macro-val">~190g</div><div class="macro-lbl">Proteína</div></div>
-          <div class="macro-item"><div class="macro-val">~190g</div><div class="macro-lbl">Carbos</div></div>
-          <div class="macro-item"><div class="macro-val">~60g</div><div class="macro-lbl">Grasa</div></div>
+          <div class="macro-item"><div class="macro-val">~190g</div><div class="macro-lbl">Prot</div></div>
+          <div class="macro-item"><div class="macro-val">~195g</div><div class="macro-lbl">Carbs</div></div>
+          <div class="macro-item"><div class="macro-val">~65g</div><div class="macro-lbl">Grasa</div></div>
           <div class="macro-item"><div class="macro-val">~2400</div><div class="macro-lbl">Kcal</div></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- DOMINGO -->
+  <!-- ============ DOMINGO — DESCANSO ============ -->
   <div class="day-panel" id="day-dom">
     <div class="day-title"><div class="day-dot" style="background:#333"></div><h2>DOMINGO</h2></div>
     <div class="day-subtitle">Descanso · Día de medición</div>
     <div class="rest-message"><div class="rest-emoji">📏</div><div class="rest-text"><strong>Medición semanal</strong><br>Peso · Cintura · Foto frente y perfil<br><span style="color:var(--gold)">En ayunas, post baño, misma balanza</span></div></div>
     <div class="section" id="dom-com">
-      <div class="section-header" onclick="toggle('dom-com')"><h3>COMIDAS</h3><div><span class="badge">5 comidas</span><span class="chevron">▼</span></div></div>
+      <div class="section-header" onclick="toggle('dom-com')"><h3>COMIDAS</h3><div><span class="badge">~2300 kcal</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
         <div class="meal"><div class="meal-name">DESAYUNO</div><ul class="meal-items"><li>3 huevos</li><li>50 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
         <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>50 g arroz</li><li>Ensalada + 10 g aceite</li><li>1 fruta</li></ul></div>
-        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>Whey protein</li><li>Barrita Integra (15g prot)</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 huevos (3 claras + 2 yemas)</li><li>1 tostada pan integral 30g</li></ul></div>
         <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>30 g arroz</li><li>Ensalada + 10 g aceite</li></ul></div>
         <div class="meal"><div class="meal-name">POST-CENA</div><ul class="meal-items"><li>Yogur La Serenísima (15g prot)</li></ul></div>
         <div class="macros-badge">
-          <div class="macro-item"><div class="macro-val">~185g</div><div class="macro-lbl">Proteína</div></div>
-          <div class="macro-item"><div class="macro-val">~175g</div><div class="macro-lbl">Carbos</div></div>
-          <div class="macro-item"><div class="macro-val">~60g</div><div class="macro-lbl">Grasa</div></div>
+          <div class="macro-item"><div class="macro-val">~185g</div><div class="macro-lbl">Prot</div></div>
+          <div class="macro-item"><div class="macro-val">~175g</div><div class="macro-lbl">Carbs</div></div>
+          <div class="macro-item"><div class="macro-val">~65g</div><div class="macro-lbl">Grasa</div></div>
           <div class="macro-item"><div class="macro-val">~2300</div><div class="macro-lbl">Kcal</div></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- PROGRESO -->
+
+  <!-- ============ PROGRESO ============ -->
   <div class="day-panel" id="day-prog">
     <div class="day-title"><div class="day-dot" style="background:var(--accent)"></div><h2>PROGRESO</h2></div>
     <div class="day-subtitle">Evolución semanal · Mediciones domingos</div>
-
-    <!-- Input -->
     <div class="section" id="prog-input">
       <div class="section-header" onclick="toggle('prog-input')"><h3>NUEVA MEDICIÓN</h3><div><span class="badge">cargar</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
@@ -700,27 +703,19 @@
         </div>
       </div>
     </div>
-
-    <!-- Stats -->
     <div class="progress-stats" id="prog-stats"></div>
-
-    <!-- Chart -->
     <div class="progress-chart">
       <h3>📈 PESO</h3>
       <svg class="chart-svg" id="weight-chart"></svg>
     </div>
-
     <div class="progress-chart">
       <h3 style="color:var(--gold)">🔥 GRASA %</h3>
       <svg class="chart-svg" id="fat-chart"></svg>
     </div>
-
     <div class="progress-chart" style="margin-bottom:12px">
       <h3 style="color:var(--green)">💪 MÚSCULO (kg esq.)</h3>
       <svg class="chart-svg" id="muscle-chart"></svg>
     </div>
-
-    <!-- History -->
     <div class="progress-history">
       <h3>HISTORIAL</h3>
       <div id="prog-history"></div>
@@ -731,13 +726,15 @@
   <div class="rules">
     <h3>REGLAS CLAVE</h3>
     <div class="rule-item"><span class="rule-icon">⚫</span><span>Creatina todos los días: 5 g</span></div>
-    <div class="rule-item"><span class="rule-icon">🍌</span><span>Entrenás en ayunas 7am → banana siempre post entreno</span></div>
+    <div class="rule-item"><span class="rule-icon">🍌</span><span>Entrenás en ayunas 7am → banana post entreno</span></div>
     <div class="rule-item"><span class="rule-icon">🍎</span><span>Fruta en almuerzo y cena, sin sacrificar arroz</span></div>
-    <div class="rule-item"><span class="rule-icon">🏃</span><span>Cardio suave 2x/sem → no matarte</span></div>
+    <div class="rule-item"><span class="rule-icon">🐟</span><span>Rotar: pollo 3x, carne 2x, pescado 2x por semana</span></div>
+    <div class="rule-item"><span class="rule-icon">🥜</span><span>Almendras/nueces 15-20g en almuerzo todos los días</span></div>
+    <div class="rule-item"><span class="rule-icon">💧</span><span>Mín 2.5L agua · 3L entrenamiento · Mate no cuenta</span></div>
+    <div class="rule-item"><span class="rule-icon">💪</span><span>Progresión: tope del rango → +2.5 kg semana siguiente</span></div>
     <div class="rule-item"><span class="rule-icon">⚖</span><span>Subida 0.2-0.3 kg/sem · Si no subís → +10g arroz</span></div>
-    <div class="rule-item"><span class="rule-icon">💧</span><span>Mínimo 2.5L agua · 3L días entrenamiento · Mate no cuenta</span></div>
-    <div class="rule-item"><span class="rule-icon">💪</span><span>Progresión: tope del rango en todas las series → +2.5 kg</span></div>
     <div class="rule-item"><span class="rule-icon">📏</span><span>Medición domingos: peso + cintura + foto</span></div>
+    <div class="rule-item"><span class="rule-icon">😴</span><span>Deload cada 6-8 semanas: 1 semana al 60% del peso</span></div>
   </div>
 
   <div class="reset-section">
