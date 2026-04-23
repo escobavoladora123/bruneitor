@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#050505">
+<title>BRUNEITOR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050505;
+    --surface: #0f0f0f;
+    --card: #141414;
+    --border: #1e1e1e;
+    --text: #eaeaea;
+    --muted: #6b6b6b;
+    --accent: #FF3E1D;
+    --accent-glow: rgba(255, 62, 29, 0.15);
+    --accent-soft: #ff6a4d;
+    --gold: #F5A623;
+    --gold-glow: rgba(245, 166, 35, 0.15);
+    --green: #00E676;
+    --green-glow: rgba(0, 230, 118, 0.12);
+    --red: #FF1744;
+    --blue: #448AFF;
+    --purple: #B388FF;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(5,5,5,0.88);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    padding: 56px 20px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .brand-logo {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), #ff6a4d);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 20px; color: #fff;
+    box-shadow: 0 4px 20px var(--accent-glow);
+  }
+  .brand h1 {
+    font-family: var(--font-display);
+    font-size: 28px; letter-spacing: 4px; color: var(--text);
+  }
+  .brand h1 span { color: var(--accent); }
+  .header-sub {
+    font-size: 12px; color: var(--muted); margin-top: 2px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500;
+    padding-left: 46px;
+  }
+
+  /* ===== CREATINE TRACKER ===== */
+  .creatine-tracker {
+    margin: 16px;
+    padding: 18px;
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .creatine-tracker::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+  .creatine-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 4px;
+  }
+  .creatine-title {
+    font-family: var(--font-display); font-size: 16px;
+    letter-spacing: 2px; color: var(--gold);
+  }
+  .creatine-dose {
+    font-size: 11px; color: var(--muted); background: var(--gold-glow);
+    padding: 3px 8px; border-radius: 6px; font-weight: 600;
+  }
+  .streak-text {
+    font-size: 12px; color: var(--muted); margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .creatine-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 12px;
+  }
+  .creatine-nav button {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    color: var(--muted); width: 30px; height: 30px; border-radius: 50%;
+    font-size: 14px; cursor: pointer; transition: all 0.2s;
+  }
+  .creatine-nav button:active { background: rgba(255,255,255,0.08); }
+  .week-label { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.5px; }
+  .creatine-week {
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    gap: 6px; text-align: center;
+  }
+  .creatine-day { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .creatine-day .day-label { font-size: 10px; color: var(--muted); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  .creatine-day .day-num { font-size: 11px; color: var(--muted); }
+  .creatine-check {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 2px solid #252525; background: transparent;
+    color: transparent; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.25s ease;
+  }
+  .creatine-check.checked {
+    background: var(--gold); border-color: var(--gold);
+    color: #000; box-shadow: 0 2px 12px var(--gold-glow);
+  }
+  .creatine-check.today { border-color: var(--gold); }
+  .creatine-check.past:not(.checked) { border-color: var(--red); opacity: 0.4; }
+
+  /* ===== OBJETIVO ===== */
+  .objetivo {
+    margin: 0 16px 0; padding: 18px;
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .objetivo::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--blue), transparent);
+  }
+  .objetivo-label {
+    font-family: var(--font-display); font-size: 14px;
+    letter-spacing: 2px; color: var(--blue); margin-bottom: 12px;
+  }
+  .objetivo-grid { display: flex; gap: 8px; }
+  .objetivo-item {
+    flex: 1; background: rgba(255,255,255,0.03);
+    border-radius: var(--radius-sm); padding: 12px 8px; text-align: center;
+    border: 1px solid var(--border);
+  }
+  .objetivo-item .val {
+    font-family: var(--font-display); font-size: 26px; letter-spacing: 1px;
+  }
+  .objetivo-item .lbl { font-size: 10px; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
+  /* ===== TABS ===== */
+  .tabs {
+    display: flex; overflow-x: auto; scrollbar-width: none;
+    padding: 16px 16px 0; gap: 6px;
+    position: sticky; top: 98px; z-index: 99;
+    background: rgba(5,5,5,0.88);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    padding-bottom: 14px;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex-shrink: 0; padding: 8px 16px; border-radius: 24px;
+    font-family: var(--font-display); font-size: 15px; letter-spacing: 2px;
+    border: 1px solid var(--border); cursor: pointer;
+    background: var(--surface); color: var(--muted); transition: all 0.25s;
+  }
+  .tab.active {
+    color: #fff; border-color: transparent;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .tab[data-day="lun"].active { background: var(--accent); box-shadow: 0 4px 16px var(--accent-glow); }
+  .tab[data-day="mar"].active { background: var(--blue); }
+  .tab[data-day="mie"].active { background: var(--purple); }
+  .tab[data-day="jue"].active { background: var(--gold); color: #000; }
+  .tab[data-day="vie"].active { background: var(--green); color: #000; }
+  .tab[data-day="sab"].active { background: #6b6b6b; }
+  .tab[data-day="dom"].active { background: #333; }
+
+  /* ===== CONTENT ===== */
+  .content { padding: 0 16px 32px; }
+  .day-panel { display: none; }
+  .day-panel.active { display: block; animation: fadeUp 0.35s ease; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .day-title { display: flex; align-items: center; gap: 10px; margin: 18px 0 4px; }
+  .day-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .day-title h2 { font-family: var(--font-display); font-size: 28px; letter-spacing: 2px; }
+  .day-subtitle { font-size: 12px; color: var(--muted); margin-bottom: 16px; letter-spacing: 0.5px; font-weight: 500; }
+
+  /* ===== REST TIMER ===== */
+  .rest-timer-bar {
+    margin-bottom: 14px;
+  }
+  .rest-timer-btn {
+    width: 100%; padding: 14px; border-radius: var(--radius);
+    border: 1px solid var(--border); background: var(--card);
+    color: var(--muted); font-family: var(--font-display);
+    font-size: 16px; letter-spacing: 3px; cursor: pointer;
+    transition: all 0.3s ease; position: relative; overflow: hidden;
+  }
+  .rest-timer-btn.active {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, #1a0a08, #140505);
+    color: var(--accent); font-size: 36px; padding: 24px;
+    box-shadow: 0 0 30px var(--accent-glow);
+  }
+  .rest-timer-btn.done {
+    border-color: var(--green); color: var(--green);
+    box-shadow: 0 0 30px var(--green-glow);
+  }
+  .rest-timer-progress {
+    height: 3px; background: var(--border); border-radius: 2px;
+    margin-top: 8px; overflow: hidden; opacity: 0; transition: opacity 0.3s;
+  }
+  .rest-timer-progress.visible { opacity: 1; }
+  .rest-timer-fill {
+    height: 100%; background: var(--accent); border-radius: 2px;
+    transition: width 1s linear;
+  }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    background: var(--card); border-radius: var(--radius);
+    margin-bottom: 12px; overflow: hidden;
+    border: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .section-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 16px; cursor: pointer; user-select: none;
+  }
+  .section-header h3 {
+    font-family: var(--font-display); font-size: 16px;
+    letter-spacing: 1.5px;
+  }
+  .section-header .badge {
+    font-size: 10px; padding: 3px 10px; border-radius: 20px;
+    background: rgba(255,255,255,0.05); color: var(--muted);
+    font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+  }
+  .section-header .chevron {
+    font-size: 10px; color: var(--muted); transition: transform 0.3s;
+    margin-left: 8px;
+  }
+  .section.collapsed .section-body { display: none; }
+  .section.collapsed .chevron { transform: rotate(-90deg); }
+  .section-body { padding: 0 16px 14px; }
+
+  /* ===== EXERCISES ===== */
+  .exercise {
+    display: flex; align-items: center; padding: 12px 0;
+    border-bottom: 1px solid var(--border); gap: 8px;
+    transition: opacity 0.3s;
+  }
+  .exercise:last-child { border-bottom: none; }
+  .exercise.done { opacity: 0.35; }
+  .ex-check {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 2px solid #2a2a2a; background: transparent;
+    color: transparent; font-size: 12px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: all 0.25s;
+  }
+  .ex-check.checked {
+    border-color: var(--green); background: var(--green);
+    color: #000; box-shadow: 0 2px 8px var(--green-glow);
+  }
+  .exercise .name {
+    font-size: 14px; font-weight: 500; flex: 1; min-width: 0;
+  }
+  .exercise .sets {
+    font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums;
+    white-space: nowrap; flex-shrink: 0; font-weight: 600;
+    background: rgba(255,255,255,0.04); padding: 3px 7px;
+    border-radius: 6px; letter-spacing: 0.3px;
+  }
+  .weight-input {
+    width: 54px; padding: 6px 4px; border-radius: var(--radius-sm);
+    border: 1px solid var(--border); background: rgba(255,255,255,0.03);
+    color: var(--text); font-size: 13px; text-align: center;
+    font-family: var(--font-body); flex-shrink: 0;
+    -webkit-appearance: none; transition: border-color 0.2s;
+  }
+  .weight-input:focus { outline: none; border-color: var(--accent); }
+  .weight-input::placeholder { color: #2a2a2a; font-size: 11px; }
+  .weight-unit { font-size: 10px; color: var(--muted); flex-shrink: 0; font-weight: 600; text-transform: uppercase; }
+
+  /* ===== MEALS ===== */
+  .meal { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .meal:last-child { border-bottom: none; }
+  .meal-name {
+    font-family: var(--font-display); font-size: 13px;
+    color: var(--muted); letter-spacing: 1.5px; margin-bottom: 8px;
+  }
+  .meal-items { list-style: none; }
+  .meal-items li {
+    font-size: 13px; padding: 3px 0 3px 16px; position: relative;
+    color: rgba(234,234,234,0.85);
+  }
+  .meal-items li::before {
+    content: ''; position: absolute; left: 0; top: 11px;
+    width: 4px; height: 4px; border-radius: 50%; background: #2a2a2a;
+  }
+  .meal-items .highlight {
+    color: var(--gold); font-weight: 600;
+  }
+  .meal-items .highlight::before { background: var(--gold); }
+
+  /* ===== CARDIO ===== */
+  .cardio-info { padding: 10px 0; }
+  .cardio-info .row {
+    display: flex; justify-content: space-between; padding: 7px 0;
+    font-size: 13px;
+  }
+  .cardio-info .label { color: var(--muted); }
+  .cardio-info .value { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  /* ===== REST DAY ===== */
+  .rest-message { text-align: center; padding: 48px 20px; }
+  .rest-emoji { font-size: 56px; margin-bottom: 16px; }
+  .rest-text {
+    font-size: 15px; color: var(--muted); line-height: 1.6;
+  }
+  .rest-text strong { color: var(--text); font-weight: 600; }
+
+  /* ===== RULES ===== */
+  .rules {
+    margin: 16px 0; padding: 18px; background: var(--card);
+    border-radius: var(--radius); border: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .rules::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--green), transparent);
+  }
+  .rules h3 {
+    font-family: var(--font-display); font-size: 16px;
+    letter-spacing: 2px; margin-bottom: 14px; color: var(--green);
+  }
+  .rule-item {
+    display: flex; gap: 10px; padding: 8px 0; font-size: 13px;
+    align-items: flex-start; color: rgba(234,234,234,0.8);
+  }
+  .rule-icon { flex-shrink: 0; width: 20px; text-align: center; font-size: 14px; }
+
+  /* ===== RESET ===== */
+  .reset-section { text-align: center; padding: 20px 0 60px; }
+  .reset-btn {
+    background: transparent; border: 1px solid #1e1e1e; color: var(--muted);
+    padding: 10px 24px; border-radius: 24px; font-size: 11px;
+    cursor: pointer; font-family: var(--font-display);
+    letter-spacing: 2px; transition: all 0.2s;
+  }
+  .reset-btn:active { border-color: var(--red); color: var(--red); }
+
+  /* ===== FOOTER BRAND ===== */
+  .footer-brand {
+    text-align: center; padding: 0 0 20px;
+    font-family: var(--font-display); font-size: 14px;
+    letter-spacing: 4px; color: #1a1a1a;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="brand">
+    <div class="brand-logo">B</div>
+    <h1>BRUNEI<span>TOR</span></h1>
+  </div>
+  <div class="header-sub">Volumen limpio &middot; 68 → 72 kg</div>
+</div>
+
+<!-- CREATINE -->
+<div class="creatine-tracker">
+  <div class="creatine-header">
+    <div class="creatine-title">⚡ CREATINA DIARIA</div>
+    <div class="creatine-dose">5g</div>
+  </div>
+  <div class="streak-text" id="streak-text">Cargando...</div>
+  <div class="creatine-nav">
+    <button onclick="changeWeek(-1)">‹</button>
+    <span class="week-label" id="week-label"></span>
+    <button onclick="changeWeek(1)">›</button>
+  </div>
+  <div class="creatine-week" id="creatine-week"></div>
+</div>
+
+<!-- OBJETIVO -->
+<div class="objetivo">
+  <div class="objetivo-label">OBJETIVO</div>
+  <div class="objetivo-grid">
+    <div class="objetivo-item"><div class="val">68</div><div class="lbl">Actual</div></div>
+    <div class="objetivo-item"><div class="val">72</div><div class="lbl">Meta</div></div>
+    <div class="objetivo-item"><div class="val">5g</div><div class="lbl">Creatina</div></div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs" id="tabs">
+  <button class="tab" data-day="lun" onclick="showDay('lun')">LUN</button>
+  <button class="tab" data-day="mar" onclick="showDay('mar')">MAR</button>
+  <button class="tab" data-day="mie" onclick="showDay('mie')">MIE</button>
+  <button class="tab" data-day="jue" onclick="showDay('jue')">JUE</button>
+  <button class="tab" data-day="vie" onclick="showDay('vie')">VIE</button>
+  <button class="tab" data-day="sab" onclick="showDay('sab')">SAB</button>
+  <button class="tab" data-day="dom" onclick="showDay('dom')">DOM</button>
+</div>
+
+<div class="content">
+
+  <!-- LUNES -->
+  <div class="day-panel" id="day-lun">
+    <div class="day-title"><div class="day-dot" style="background:var(--accent)"></div><h2>LUNES</h2></div>
+    <div class="day-subtitle">Pecho + Triceps + Pilates 20hs</div>
+    <div class="rest-timer-bar">
+      <button class="rest-timer-btn" id="timer-lun" onclick="toggleTimer('lun')">DESCANSO 1:30</button>
+      <div class="rest-timer-progress" id="timer-prog-lun"><div class="rest-timer-fill" id="timer-fill-lun"></div></div>
+    </div>
+    <div class="section" id="lun-ej">
+      <div class="section-header" onclick="toggle('lun-ej')"><h3>EJERCICIOS</h3><div><span class="badge">7 ejercicios</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="exercise" id="ex-lun-press-banca"><button class="ex-check" onclick="toggleEx('lun-press-banca')">✓</button><span class="name">Press banca</span><span class="sets">4×6-8</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-press-banca"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-lun-press-inclinado"><button class="ex-check" onclick="toggleEx('lun-press-inclinado')">✓</button><span class="name">Press inclinado</span><span class="sets">3×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-press-inclinado"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-lun-maq-pecho"><button class="ex-check" onclick="toggleEx('lun-maq-pecho')">✓</button><span class="name">Máquina pecho</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-maq-pecho"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-lun-cruces"><button class="ex-check" onclick="toggleEx('lun-cruces')">✓</button><span class="name">Cruces</span><span class="sets">3×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-cruces"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-lun-fondos"><button class="ex-check" onclick="toggleEx('lun-fondos')">✓</button><span class="name">Fondos</span><span class="sets">3×6-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-fondos"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-lun-tri-polea"><button class="ex-check" onclick="toggleEx('lun-tri-polea')">✓</button><span class="name">Tríceps polea</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-tri-polea"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-lun-ext-overhead"><button class="ex-check" onclick="toggleEx('lun-ext-overhead')">✓</button><span class="name">Extensión overhead</span><span class="sets">2-3×12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="lun-ext-overhead"><span class="weight-unit">kg</span></div>
+      </div>
+    </div>
+    <div class="section" id="lun-com">
+      <div class="section-header" onclick="toggle('lun-com')"><h3>COMIDAS</h3><div><span class="badge">5 comidas</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos (2 enteros + 1 clara)</li><li>30 g avena</li><li>1 banana</li><li>150-200 ml leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g pollo o carne</li><li>50 g arroz crudo</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+        <div class="meal"><div class="meal-name">FRUTA DEL DÍA</div><ul class="meal-items"><li>1 fruta (manzana / pera / naranja / 2 mandarinas)</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 claras + 2 yemas</li></ul></div>
+        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>40 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARTES -->
+  <div class="day-panel" id="day-mar">
+    <div class="day-title"><div class="day-dot" style="background:var(--blue)"></div><h2>MARTES</h2></div>
+    <div class="day-subtitle">Espalda + Bíceps</div>
+    <div class="rest-timer-bar">
+      <button class="rest-timer-btn" id="timer-mar" onclick="toggleTimer('mar')">DESCANSO 1:30</button>
+      <div class="rest-timer-progress" id="timer-prog-mar"><div class="rest-timer-fill" id="timer-fill-mar"></div></div>
+    </div>
+    <div class="section" id="mar-ej">
+      <div class="section-header" onclick="toggle('mar-ej')"><h3>EJERCICIOS</h3><div><span class="badge">7 ejercicios</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="exercise" id="ex-mar-dominadas"><button class="ex-check" onclick="toggleEx('mar-dominadas')">✓</button><span class="name">Dominadas</span><span class="sets">4×6-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-dominadas"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-mar-remo"><button class="ex-check" onclick="toggleEx('mar-remo')">✓</button><span class="name">Remo</span><span class="sets">3×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-remo"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-mar-jalon"><button class="ex-check" onclick="toggleEx('mar-jalon')">✓</button><span class="name">Jalón</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-jalon"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-mar-remo-polea"><button class="ex-check" onclick="toggleEx('mar-remo-polea')">✓</button><span class="name">Remo polea</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-remo-polea"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-mar-curl-barra"><button class="ex-check" onclick="toggleEx('mar-curl-barra')">✓</button><span class="name">Curl barra</span><span class="sets">3×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-curl-barra"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-mar-curl-inclinado"><button class="ex-check" onclick="toggleEx('mar-curl-inclinado')">✓</button><span class="name">Curl inclinado</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-curl-inclinado"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-mar-martillo"><button class="ex-check" onclick="toggleEx('mar-martillo')">✓</button><span class="name">Martillo</span><span class="sets">2-3×12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="mar-martillo"><span class="weight-unit">kg</span></div>
+      </div>
+    </div>
+    <div class="section" id="mar-com">
+      <div class="section-header" onclick="toggle('mar-com')"><h3>COMIDAS</h3><div><span class="badge">4 comidas</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos</li><li>30 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>60 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 claras + 2 yemas</li></ul></div>
+        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>50 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MIERCOLES -->
+  <div class="day-panel" id="day-mie">
+    <div class="day-title"><div class="day-dot" style="background:var(--purple)"></div><h2>MIÉRCOLES</h2></div>
+    <div class="day-subtitle">Descanso (Oficina)</div>
+    <div class="rest-message"><div class="rest-emoji">😴</div><div class="rest-text"><strong>Día de descanso</strong><br>Recuperación muscular</div></div>
+    <div class="section" id="mie-com">
+      <div class="section-header" onclick="toggle('mie-com')"><h3>COMIDAS</h3><div><span class="badge">5 comidas</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="meal"><div class="meal-name">DESAYUNO</div><ul class="meal-items"><li>3 huevos</li><li>30 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>30 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+        <div class="meal"><div class="meal-name">POST ALMUERZO</div><ul class="meal-items"><li>1 fruta (manzana / pera / naranja / 2 mandarinas)</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 claras + 2 yemas</li></ul></div>
+        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>20-25 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JUEVES -->
+  <div class="day-panel" id="day-jue">
+    <div class="day-title"><div class="day-dot" style="background:var(--gold)"></div><h2>JUEVES</h2></div>
+    <div class="day-subtitle">Hombros + Core + Cardio</div>
+    <div class="rest-timer-bar">
+      <button class="rest-timer-btn" id="timer-jue" onclick="toggleTimer('jue')">DESCANSO 1:30</button>
+      <div class="rest-timer-progress" id="timer-prog-jue"><div class="rest-timer-fill" id="timer-fill-jue"></div></div>
+    </div>
+    <div class="section" id="jue-ej">
+      <div class="section-header" onclick="toggle('jue-ej')"><h3>EJERCICIOS</h3><div><span class="badge">5 ejercicios</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="exercise" id="ex-jue-press-militar"><button class="ex-check" onclick="toggleEx('jue-press-militar')">✓</button><span class="name">Press militar</span><span class="sets">4×6-8</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-press-militar"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-jue-laterales"><button class="ex-check" onclick="toggleEx('jue-laterales')">✓</button><span class="name">Laterales</span><span class="sets">4×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-laterales"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-jue-posteriores"><button class="ex-check" onclick="toggleEx('jue-posteriores')">✓</button><span class="name">Posteriores</span><span class="sets">3×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-posteriores"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-jue-maq-hombro"><button class="ex-check" onclick="toggleEx('jue-maq-hombro')">✓</button><span class="name">Máquina hombro</span><span class="sets">3×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-maq-hombro"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-jue-encogimientos"><button class="ex-check" onclick="toggleEx('jue-encogimientos')">✓</button><span class="name">Encogimientos</span><span class="sets">3×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="jue-encogimientos"><span class="weight-unit">kg</span></div>
+      </div>
+    </div>
+    <div class="section" id="jue-core">
+      <div class="section-header" onclick="toggle('jue-core')"><h3>CORE</h3><div><span class="badge">2 ejercicios</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="exercise"><span class="name" style="padding-left:34px">Plancha</span><span class="sets">3×30-45s</span></div>
+        <div class="exercise"><span class="name" style="padding-left:34px">Crunch</span><span class="sets">3×12</span></div>
+      </div>
+    </div>
+    <div class="section" id="jue-cardio">
+      <div class="section-header" onclick="toggle('jue-cardio')"><h3>CARDIO</h3><div><span class="badge">caminata</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="cardio-info">
+          <div class="row"><span class="label">Tipo</span><span class="value">Caminata en cinta</span></div>
+          <div class="row"><span class="label">Velocidad</span><span class="value">5-6 km/h</span></div>
+          <div class="row"><span class="label">Inclinación</span><span class="value">5-8%</span></div>
+          <div class="row"><span class="label">Duración</span><span class="value">20-25 min</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="jue-com">
+      <div class="section-header" onclick="toggle('jue-com')"><h3>COMIDAS</h3><div><span class="badge">4 comidas</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos</li><li>30 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>60 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 claras + 2 yemas</li></ul></div>
+        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>40-50 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIERNES -->
+  <div class="day-panel" id="day-vie">
+    <div class="day-title"><div class="day-dot" style="background:var(--green)"></div><h2>VIERNES</h2></div>
+    <div class="day-subtitle">Piernas</div>
+    <div class="rest-timer-bar">
+      <button class="rest-timer-btn" id="timer-vie" onclick="toggleTimer('vie')">DESCANSO 1:30</button>
+      <div class="rest-timer-progress" id="timer-prog-vie"><div class="rest-timer-fill" id="timer-fill-vie"></div></div>
+    </div>
+    <div class="section" id="vie-ej">
+      <div class="section-header" onclick="toggle('vie-ej')"><h3>EJERCICIOS</h3><div><span class="badge">7 ejercicios</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="exercise" id="ex-vie-sentadilla"><button class="ex-check" onclick="toggleEx('vie-sentadilla')">✓</button><span class="name">Sentadilla</span><span class="sets">4×6-8</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-sentadilla"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-vie-pm-rumano"><button class="ex-check" onclick="toggleEx('vie-pm-rumano')">✓</button><span class="name">Peso muerto rumano</span><span class="sets">3×8-10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-pm-rumano"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-vie-prensa"><button class="ex-check" onclick="toggleEx('vie-prensa')">✓</button><span class="name">Prensa</span><span class="sets">3×10</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-prensa"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-vie-bulgaras"><button class="ex-check" onclick="toggleEx('vie-bulgaras')">✓</button><span class="name">Búlgaras</span><span class="sets">3×8</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-bulgaras"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-vie-cuadriceps"><button class="ex-check" onclick="toggleEx('vie-cuadriceps')">✓</button><span class="name">Cuádriceps</span><span class="sets">3×12-15</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-cuadriceps"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-vie-isquios"><button class="ex-check" onclick="toggleEx('vie-isquios')">✓</button><span class="name">Isquios</span><span class="sets">3×10-12</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-isquios"><span class="weight-unit">kg</span></div>
+        <div class="exercise" id="ex-vie-gemelos"><button class="ex-check" onclick="toggleEx('vie-gemelos')">✓</button><span class="name">Gemelos</span><span class="sets">4×15-20</span><input class="weight-input" type="number" inputmode="decimal" placeholder="kg" data-ex="vie-gemelos"><span class="weight-unit">kg</span></div>
+      </div>
+    </div>
+    <div class="section" id="vie-com">
+      <div class="section-header" onclick="toggle('vie-com')"><h3>COMIDAS</h3><div><span class="badge">4 comidas</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="meal"><div class="meal-name">DESAYUNO (POST GYM)</div><ul class="meal-items"><li>3 huevos</li><li>40 g avena</li><li>1 banana grande</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>70 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 claras + 2 yemas</li></ul></div>
+        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>50-60 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SABADO -->
+  <div class="day-panel" id="day-sab">
+    <div class="day-title"><div class="day-dot" style="background:#6b6b6b"></div><h2>SÁBADO</h2></div>
+    <div class="day-subtitle">Cardio</div>
+    <div class="section" id="sab-cardio">
+      <div class="section-header" onclick="toggle('sab-cardio')"><h3>CARDIO</h3><div><span class="badge">25-30 min</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="cardio-info">
+          <div class="row"><span class="label">Opción 1</span><span class="value">Caminata</span></div>
+          <div class="row"><span class="label">Velocidad</span><span class="value">5-6 km/h</span></div>
+          <div class="row"><span class="label">Inclinación</span><span class="value">5-10%</span></div>
+          <div class="row" style="border-top:1px solid var(--border);margin-top:10px;padding-top:12px"><span class="label">Opción 2</span><span class="value">Trote</span></div>
+          <div class="row"><span class="label">Velocidad</span><span class="value">7-8 km/h</span></div>
+          <div class="row"><span class="label">Duración</span><span class="value">25-30 min</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="sab-com">
+      <div class="section-header" onclick="toggle('sab-com')"><h3>COMIDAS</h3><div><span class="badge">5 comidas</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="meal"><div class="meal-name">DESAYUNO (POST CARDIO)</div><ul class="meal-items"><li>3 huevos</li><li>30 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>45 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+        <div class="meal"><div class="meal-name">FRUTA DEL DÍA</div><ul class="meal-items"><li>1 fruta (manzana / pera / naranja / 2 mandarinas)</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 claras + 2 yemas</li></ul></div>
+        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>30-40 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOMINGO -->
+  <div class="day-panel" id="day-dom">
+    <div class="day-title"><div class="day-dot" style="background:#333"></div><h2>DOMINGO</h2></div>
+    <div class="day-subtitle">Descanso</div>
+    <div class="rest-message"><div class="rest-emoji">😴</div><div class="rest-text"><strong>Descanso total</strong><br>Recuperación y crecimiento</div></div>
+    <div class="section" id="dom-com">
+      <div class="section-header" onclick="toggle('dom-com')"><h3>COMIDAS</h3><div><span class="badge">4 comidas</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="meal"><div class="meal-name">DESAYUNO</div><ul class="meal-items"><li>3 huevos</li><li>30 g avena</li><li>1 banana</li><li>Leche proteica</li><li class="highlight">Creatina: 5 g</li></ul></div>
+        <div class="meal"><div class="meal-name">ALMUERZO</div><ul class="meal-items"><li>250 g proteína</li><li>40 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+        <div class="meal"><div class="meal-name">MERIENDA</div><ul class="meal-items"><li>3 claras + 2 yemas</li></ul></div>
+        <div class="meal"><div class="meal-name">CENA</div><ul class="meal-items"><li>250 g proteína</li><li>20-30 g arroz</li><li>Ensalada</li><li>10 g aceite</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGLAS -->
+  <div class="rules">
+    <h3>REGLAS CLAVE</h3>
+    <div class="rule-item"><span class="rule-icon">⚫</span><span>Creatina todos los días: 5 g</span></div>
+    <div class="rule-item"><span class="rule-icon">🍌</span><span>Entrenás en ayunas → banana siempre post entreno</span></div>
+    <div class="rule-item"><span class="rule-icon">🍎</span><span>Fruta reemplaza parte del arroz (ya ajustado)</span></div>
+    <div class="rule-item"><span class="rule-icon">🏃</span><span>Cardio suave → no matarte</span></div>
+    <div class="rule-item"><span class="rule-icon">⚖</span><span>Subida de peso controlada</span></div>
+  </div>
+
+  <div class="reset-section">
+    <button class="reset-btn" onclick="resetAll()">RESETEAR DATOS</button>
+  </div>
+
+  <div class="footer-brand">BRUNEITOR</div>
+
+</div>
+
+<script>
+// ===== DAY TABS =====
+function showDay(day) {
+  document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('day-' + day).classList.add('active');
+  document.querySelector('.tab[data-day="' + day + '"]').classList.add('active');
+}
+
+function toggle(id) {
+  document.getElementById(id).classList.toggle('collapsed');
+}
+
+// ===== EXERCISE CHECK =====
+function getChecks() {
+  try { return JSON.parse(localStorage.getItem('brn-checks') || '{}'); } catch(e) { return {}; }
+}
+function toggleEx(id) {
+  const checks = getChecks();
+  const el = document.getElementById('ex-' + id);
+  const btn = el.querySelector('.ex-check');
+  if (checks[id]) { delete checks[id]; el.classList.remove('done'); btn.classList.remove('checked'); }
+  else { checks[id] = true; el.classList.add('done'); btn.classList.add('checked'); }
+  localStorage.setItem('brn-checks', JSON.stringify(checks));
+}
+function loadChecks() {
+  const checks = getChecks();
+  Object.keys(checks).forEach(id => {
+    const el = document.getElementById('ex-' + id);
+    if (el) { el.classList.add('done'); el.querySelector('.ex-check').classList.add('checked'); }
+  });
+}
+
+// ===== WEIGHT TRACKING =====
+function getWeights() {
+  try { return JSON.parse(localStorage.getItem('brn-weights') || '{}'); } catch(e) { return {}; }
+}
+function saveWeight(key, val) {
+  const w = getWeights();
+  if (val === '' || val === null) { delete w[key]; } else { w[key] = val; }
+  localStorage.setItem('brn-weights', JSON.stringify(w));
+}
+function loadWeights() {
+  const w = getWeights();
+  document.querySelectorAll('.weight-input').forEach(input => {
+    const key = input.dataset.ex;
+    if (w[key] !== undefined) input.value = w[key];
+    else input.value = '';
+  });
+}
+document.querySelectorAll('.weight-input').forEach(input => {
+  input.addEventListener('change', function() { saveWeight(this.dataset.ex, this.value); });
+  input.addEventListener('blur', function() { saveWeight(this.dataset.ex, this.value); });
+});
+
+// ===== REST TIMER =====
+const timers = {};
+function toggleTimer(day) {
+  const btn = document.getElementById('timer-' + day);
+  const prog = document.getElementById('timer-prog-' + day);
+  const fill = document.getElementById('timer-fill-' + day);
+
+  if (timers[day]) {
+    clearInterval(timers[day].interval);
+    delete timers[day];
+    btn.className = 'rest-timer-btn';
+    btn.textContent = 'DESCANSO 1:30';
+    prog.classList.remove('visible');
+    fill.style.width = '0%';
+    return;
+  }
+
+  const total = 90;
+  let remaining = total;
+  btn.className = 'rest-timer-btn active';
+  prog.classList.add('visible');
+
+  function update() {
+    const m = Math.floor(remaining / 60);
+    const s = String(remaining % 60).padStart(2, '0');
+    btn.textContent = m + ':' + s;
+    fill.style.width = ((total - remaining) / total * 100) + '%';
+
+    if (remaining <= 0) {
+      clearInterval(timers[day].interval);
+      delete timers[day];
+      btn.className = 'rest-timer-btn done';
+      btn.textContent = '¡DALE!';
+      if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+      setTimeout(() => {
+        btn.className = 'rest-timer-btn';
+        btn.textContent = 'DESCANSO 1:30';
+        prog.classList.remove('visible');
+        fill.style.width = '0%';
+      }, 3000);
+    }
+    remaining--;
+  }
+
+  update();
+  timers[day] = { interval: setInterval(update, 1000) };
+}
+
+// ===== CREATINE TRACKER =====
+let weekOffset = 0;
+
+function getCreatineData() {
+  try { return JSON.parse(localStorage.getItem('brn-creatine') || '{}'); } catch(e) { return {}; }
+}
+
+function toggleCreatine(dateStr) {
+  const data = getCreatineData();
+  if (data[dateStr]) { delete data[dateStr]; } else { data[dateStr] = true; }
+  localStorage.setItem('brn-creatine', JSON.stringify(data));
+  renderCreatineWeek();
+  updateStreak();
+}
+
+function getMonday(d) {
+  const date = new Date(d);
+  const day = date.getDay();
+  const diff = date.getDate() - day + (day === 0 ? -6 : 1);
+  return new Date(date.setDate(diff));
+}
+
+function formatDate(d) {
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+function renderCreatineWeek() {
+  const today = new Date();
+  const todayStr = formatDate(today);
+  const monday = getMonday(today);
+  monday.setDate(monday.getDate() + weekOffset * 7);
+
+  const dayNames = ['L','M','X','J','V','S','D'];
+  const monthNames = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+  const data = getCreatineData();
+  const container = document.getElementById('creatine-week');
+  container.innerHTML = '';
+
+  const weekStart = new Date(monday);
+  const weekEnd = new Date(monday);
+  weekEnd.setDate(weekEnd.getDate() + 6);
+  document.getElementById('week-label').textContent =
+    weekStart.getDate() + ' ' + monthNames[weekStart.getMonth()] + ' — ' +
+    weekEnd.getDate() + ' ' + monthNames[weekEnd.getMonth()];
+
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(monday);
+    d.setDate(d.getDate() + i);
+    const dateStr = formatDate(d);
+    const isToday = dateStr === todayStr;
+    const isPast = d < today && !isToday;
+    const isChecked = !!data[dateStr];
+
+    const dayEl = document.createElement('div');
+    dayEl.className = 'creatine-day';
+    dayEl.innerHTML =
+      '<span class="day-label">' + dayNames[i] + '</span>' +
+      '<span class="day-num">' + d.getDate() + '</span>' +
+      '<button class="creatine-check' +
+        (isChecked ? ' checked' : '') +
+        (isToday ? ' today' : '') +
+        (isPast && !isChecked ? ' past' : '') +
+      '" onclick="toggleCreatine(\'' + dateStr + '\')">' +
+        (isChecked ? '✓' : '') +
+      '</button>';
+    container.appendChild(dayEl);
+  }
+}
+
+function changeWeek(dir) {
+  weekOffset += dir;
+  renderCreatineWeek();
+}
+
+function updateStreak() {
+  const data = getCreatineData();
+  const today = new Date();
+  let streak = 0;
+  const d = new Date(today);
+  if (!data[formatDate(d)]) { d.setDate(d.getDate() - 1); }
+  while (data[formatDate(d)]) { streak++; d.setDate(d.getDate() - 1); }
+
+  const el = document.getElementById('streak-text');
+  if (streak === 0) {
+    el.textContent = '⚠ No tomaste creatina hoy';
+    el.style.color = '#FF1744';
+  } else {
+    el.textContent = '🔥 ' + streak + ' día' + (streak > 1 ? 's' : '') + ' seguidos';
+    el.style.color = '#00E676';
+  }
+}
+
+// ===== RESET =====
+function resetAll() {
+  if (confirm('¿Borrar todos los datos guardados? (pesos, checks, creatina)')) {
+    localStorage.removeItem('brn-weights');
+    localStorage.removeItem('brn-checks');
+    localStorage.removeItem('brn-creatine');
+    loadWeights();
+    document.querySelectorAll('.exercise').forEach(el => el.classList.remove('done'));
+    document.querySelectorAll('.ex-check').forEach(el => el.classList.remove('checked'));
+    renderCreatineWeek();
+    updateStreak();
+    alert('Datos reseteados');
+  }
+}
+
+// ===== INIT =====
+const days = ['dom','lun','mar','mie','jue','vie','sab'];
+showDay(days[new Date().getDay()]);
+loadWeights();
+loadChecks();
+renderCreatineWeek();
+updateStreak();
+</script>
+
+</body>
+</html>
