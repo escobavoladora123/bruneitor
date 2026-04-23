@@ -710,9 +710,14 @@
       <svg class="chart-svg" id="weight-chart"></svg>
     </div>
 
+    <div class="progress-chart">
+      <h3 style="color:var(--gold)">🔥 GRASA %</h3>
+      <svg class="chart-svg" id="fat-chart"></svg>
+    </div>
+
     <div class="progress-chart" style="margin-bottom:12px">
-      <h3 style="color:var(--cyan)">📏 CINTURA</h3>
-      <svg class="chart-svg" id="waist-chart"></svg>
+      <h3 style="color:var(--green)">💪 MÚSCULO (kg esq.)</h3>
+      <svg class="chart-svg" id="muscle-chart"></svg>
     </div>
 
     <!-- History -->
@@ -1005,10 +1010,11 @@ function renderProgress() {
     const weeks = Math.max(1, Math.round((new Date(last.date) - new Date(first.date)) / (7 * 86400000)));
     const weeklyAvg = (totalChange / weeks).toFixed(2);
     const toGoal = (72 - last.weight).toFixed(1);
+    const fatStr = last.fat ? last.fat.toFixed(1) + '%' : '—';
     statsEl.innerHTML =
       '<div class="progress-stat"><div class="stat-val">' + last.weight + '</div><div class="stat-lbl">Último peso</div></div>' +
       '<div class="progress-stat"><div class="stat-val" style="color:' + (totalChange >= 0 ? 'var(--green)' : 'var(--red)') + '">' + (totalChange > 0 ? '+' : '') + totalChange + '</div><div class="stat-lbl">Total Δ</div></div>' +
-      '<div class="progress-stat"><div class="stat-val">' + weeklyAvg + '</div><div class="stat-lbl">Kg/sem</div></div>' +
+      '<div class="progress-stat"><div class="stat-val">' + fatStr + '</div><div class="stat-lbl">Grasa</div></div>' +
       '<div class="progress-stat"><div class="stat-val" style="color:var(--gold)">' + toGoal + '</div><div class="stat-lbl">Para meta</div></div>';
   } else {
     statsEl.innerHTML = '';
@@ -1016,7 +1022,8 @@ function renderProgress() {
 
   // Charts
   renderChart('weight-chart', data, 'weight', 72, '#FF3E1D', 'rgba(255,62,29,0.1)');
-  renderChart('waist-chart', data.filter(d => d.waist), 'waist', null, '#00BCD4', 'rgba(0,188,212,0.1)');
+  renderChart('fat-chart', data.filter(d => d.fat), 'fat', 11, '#F5A623', 'rgba(245,166,35,0.1)');
+  renderChart('muscle-chart', data.filter(d => d.muscle), 'muscle', null, '#00E676', 'rgba(0,230,118,0.1)');
 
   // History
   const histEl = document.getElementById('prog-history');
@@ -1035,12 +1042,35 @@ function renderProgress() {
       delta = '<span class="history-delta ' + cls + '">' + (diff > 0 ? '+' : '') + diff + '</span>';
     }
     const waistStr = d.waist ? '<span class="history-waist">' + d.waist + ' cm</span>' : '';
-    html += '<div class="history-row"><span class="history-date">' + dateStr + '</span>' + waistStr + '<span class="history-weight">' + d.weight + ' kg</span>' + delta + '<button class="history-delete" onclick="deleteMeasurement(\'' + d.date + '\')">×</button></div>';
+    const fatStr = d.fat ? '<span class="history-waist">' + d.fat + '%</span>' : '';
+    html += '<div class="history-row"><span class="history-date">' + dateStr + '</span>' + fatStr + waistStr + '<span class="history-weight">' + d.weight + ' kg</span>' + delta + '<button class="history-delete" onclick="deleteMeasurement(\'' + d.date + '\')">×</button></div>';
   }
   histEl.innerHTML = html;
 }
 
 // ===== INIT =====
+// Preload OKOK history if no data exists
+if (getMeasurements().length === 0) {
+  const okokData = [
+    { date: '2025-09-20', weight: 70.95, waist: null, fat: 18.8, muscle: 43.3 },
+    { date: '2025-09-27', weight: 70.60, waist: null, fat: 18.6, muscle: 43.4 },
+    { date: '2025-10-04', weight: 70.50, waist: null, fat: 18.6, muscle: 43.4 },
+    { date: '2025-10-11', weight: 70.55, waist: null, fat: 18.6, muscle: 43.4 },
+    { date: '2025-10-25', weight: 71.40, waist: null, fat: 19.1, muscle: 43.1 },
+    { date: '2025-11-01', weight: 70.20, waist: null, fat: 18.4, muscle: 43.6 },
+    { date: '2025-11-08', weight: 69.35, waist: null, fat: 17.8, muscle: 43.9 },
+    { date: '2025-11-15', weight: 69.55, waist: null, fat: 17.9, muscle: 43.8 },
+    { date: '2025-11-22', weight: 69.15, waist: null, fat: 17.7, muscle: 44.0 },
+    { date: '2025-11-29', weight: 68.35, waist: null, fat: 17.2, muscle: 44.3 },
+    { date: '2025-12-06', weight: 68.75, waist: null, fat: 17.4, muscle: 44.1 },
+    { date: '2025-12-14', weight: 69.05, waist: null, fat: 17.6, muscle: 44.0 },
+    { date: '2025-12-20', weight: 67.20, waist: null, fat: 16.4, muscle: 44.7 },
+    { date: '2026-03-15', weight: 68.65, waist: null, fat: 17.4, muscle: 44.1 },
+    { date: '2026-03-21', weight: 68.55, waist: null, fat: 17.3, muscle: 44.2 },
+    { date: '2026-03-28', weight: 67.85, waist: null, fat: 16.9, muscle: 44.4 },
+  ];
+  saveMeasurements(okokData);
+}
 const days = ['dom','lun','mar','mie','jue','vie','sab'];
 showDay(days[new Date().getDay()]);
 loadWeights(); loadChecks(); renderCreatineWeek(); updateStreak(); renderWater(); renderProgress();
