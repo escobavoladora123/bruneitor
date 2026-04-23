@@ -393,6 +393,7 @@
   <div class="header-sub">Volumen limpio · 68 → 72 kg</div>
 </div>
 
+<div class="view active" id="view-plan">
 <!-- CREATINE -->
 <div class="creatine-tracker" style="margin: 16px 16px 0;">
   <div class="creatine-header">
@@ -416,7 +417,7 @@
   </div>
   <div class="water-bar-bg"><div class="water-bar-fill" id="water-fill"></div></div>
   <div class="water-controls">
-    <div class="water-count"><span id="water-count">0</span> <span>/ <span id="water-goal-display">10</span> vasos</span></div>
+    <div class="water-count"><span id="water-count">0.0</span><span style="font-size:14px;color:var(--muted)">L</span> <span>/ <span id="water-goal-display">2.5</span>L</span></div>
     <div class="water-btns">
       <button class="water-btn" onclick="changeWater(-1)">−</button>
       <button class="water-btn" onclick="changeWater(1)">+</button>
@@ -424,15 +425,6 @@
   </div>
 </div>
 
-<!-- OBJETIVO -->
-<div class="objetivo">
-  <div class="objetivo-label">OBJETIVO</div>
-  <div class="objetivo-grid">
-    <div class="objetivo-item"><div class="val">68</div><div class="lbl">Actual</div></div>
-    <div class="objetivo-item"><div class="val">72</div><div class="lbl">Meta</div></div>
-    <div class="objetivo-item"><div class="val">~2550</div><div class="lbl">Kcal/día</div></div>
-  </div>
-</div>
 
 <!-- TABS -->
 <div class="tabs" id="tabs">
@@ -446,7 +438,7 @@
 
 </div>
 
-<div class="view active" id="view-plan">
+
 <div class="content">
 
 
@@ -672,6 +664,15 @@
   <div style="padding: 16px;">
     <div class="day-title" style="margin-top:8px"><div class="day-dot" style="background:var(--green)"></div><h2>REGLAS CLAVE</h2></div>
     <div class="day-subtitle">Tu código de conducta</div>
+    <!-- OBJETIVO -->
+<div class="objetivo">
+  <div class="objetivo-label">OBJETIVO</div>
+  <div class="objetivo-grid">
+    <div class="objetivo-item"><div class="val">68</div><div class="lbl">Actual</div></div>
+    <div class="objetivo-item"><div class="val">72</div><div class="lbl">Meta</div></div>
+    <div class="objetivo-item"><div class="val">~2550</div><div class="lbl">Kcal/día</div></div>
+  </div>
+</div>
     <div class="rules" style="margin:12px 0">
     <h3>REGLAS CLAVE</h3>
     <div class="rule-item"><span class="rule-icon">⚫</span><span>Creatina todos los días: 5 g</span></div>
@@ -692,8 +693,8 @@
     <div class="section" id="rules-agua" style="margin-top:12px">
       <div class="section-header" onclick="toggle('rules-agua')"><h3>💧 PROTOCOLO DE AGUA</h3><div><span class="badge">detalle</span><span class="chevron">▼</span></div></div>
       <div class="section-body">
-        <div class="rule-item"><span class="rule-icon">💧</span><span>Mínimo 10 vasos (2.5L) por día</span></div>
-        <div class="rule-item"><span class="rule-icon">🏋️</span><span>Días de gym: 12 vasos (3L)</span></div>
+        <div class="rule-item"><span class="rule-icon">💧</span><span>Mínimo 2.5L por día</span></div>
+        <div class="rule-item"><span class="rule-icon">🏋️</span><span>Días de gym: 3L</span></div>
         <div class="rule-item"><span class="rule-icon">🧉</span><span>Mate NO cuenta como agua</span></div>
         <div class="rule-item"><span class="rule-icon">➕</span><span>Por cada medio litro de mate → sumá 1 vaso extra de agua</span></div>
       </div>
@@ -873,22 +874,20 @@ function toggleTimer(day) {
 
 // ===== WATER TRACKER =====
 function getWaterKey() { return 'brn-water-' + new Date().toISOString().slice(0,10); }
-function getWater() { try { return parseInt(localStorage.getItem(getWaterKey()) || '0'); } catch(e) { return 0; } }
+function getWater() { try { return parseFloat(localStorage.getItem(getWaterKey()) || '0'); } catch(e) { return 0; } }
 function changeWater(delta) {
-  let count = getWater() + delta;
+  let count = Math.round((getWater() + (delta * 0.5)) * 10) / 10;
   if (count < 0) count = 0;
   localStorage.setItem(getWaterKey(), count);
   renderWater();
 }
 function renderWater() {
-  const count = getWater();
-  const goal = 10; // 10 vasos de 250ml = 2.5L
-  document.getElementById('water-count').textContent = count;
+  const count = getWater(), goal = 2.5;
+  document.getElementById('water-count').textContent = count.toFixed(1);
   document.getElementById('water-goal-display').textContent = goal;
   const pct = Math.min((count / goal) * 100, 100);
   document.getElementById('water-fill').style.width = pct + '%';
-  if (pct >= 100) document.getElementById('water-fill').style.background = 'var(--green)';
-  else document.getElementById('water-fill').style.background = 'var(--cyan)';
+  document.getElementById('water-fill').style.background = pct >= 100 ? 'var(--green)' : 'var(--cyan)';
 }
 
 // ===== CREATINE TRACKER =====
