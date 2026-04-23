@@ -181,6 +181,42 @@
   .tab[data-day="vie"].active { background: var(--green); color: #000; }
   .tab[data-day="sab"].active { background: #6b6b6b; }
   .tab[data-day="dom"].active { background: #333; }
+  .tab[data-day="prog"].active { background: var(--accent); box-shadow: 0 4px 16px var(--accent-glow); }
+
+  /* ===== PROGRESS ===== */
+  .progress-chart { padding: 18px; background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 12px; position: relative; overflow: hidden; }
+  .progress-chart::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); }
+  .progress-chart h3 { font-family: var(--font-display); font-size: 16px; letter-spacing: 2px; color: var(--accent); margin-bottom: 14px; }
+  .chart-svg { width: 100%; height: 200px; }
+  .chart-line { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .chart-area { fill: var(--accent-glow); }
+  .chart-dot { fill: var(--accent); stroke: var(--bg); stroke-width: 2; }
+  .chart-goal { stroke: var(--green); stroke-width: 1; stroke-dasharray: 6 4; opacity: 0.5; }
+  .chart-label { fill: var(--muted); font-size: 10px; font-family: var(--font-body); }
+  .chart-value { fill: var(--text); font-size: 10px; font-family: var(--font-body); font-weight: 600; }
+  .progress-input-row { display: flex; gap: 10px; margin-bottom: 14px; align-items: center; }
+  .progress-date { flex: 1; padding: 10px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: var(--text); font-family: var(--font-body); font-size: 13px; -webkit-appearance: none; }
+  .progress-weight-input { width: 80px; padding: 10px 8px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: var(--text); font-family: var(--font-body); font-size: 13px; text-align: center; -webkit-appearance: none; }
+  .progress-waist-input { width: 70px; padding: 10px 8px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: var(--text); font-family: var(--font-body); font-size: 13px; text-align: center; -webkit-appearance: none; }
+  .progress-add-btn { padding: 10px 16px; border-radius: var(--radius-sm); border: none; background: var(--accent); color: #fff; font-family: var(--font-display); font-size: 14px; letter-spacing: 1.5px; cursor: pointer; }
+  .progress-add-btn:active { opacity: 0.8; }
+  .progress-date:focus, .progress-weight-input:focus, .progress-waist-input:focus { outline: none; border-color: var(--accent); }
+  .progress-history { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; margin-bottom: 12px; }
+  .progress-history h3 { font-family: var(--font-display); font-size: 16px; letter-spacing: 2px; padding: 14px 16px; }
+  .history-row { display: flex; justify-content: space-between; padding: 10px 16px; border-top: 1px solid var(--border); font-size: 13px; align-items: center; }
+  .history-date { color: var(--muted); font-weight: 500; }
+  .history-weight { font-weight: 700; }
+  .history-waist { color: var(--muted); font-size: 12px; }
+  .history-delta { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+  .history-delta.up { background: var(--green-glow); color: var(--green); }
+  .history-delta.down { background: rgba(255,23,68,0.12); color: var(--red); }
+  .history-delta.same { background: rgba(255,255,255,0.05); color: var(--muted); }
+  .history-delete { background: none; border: none; color: #333; font-size: 16px; cursor: pointer; padding: 0 0 0 10px; }
+  .history-delete:active { color: var(--red); }
+  .progress-stats { display: flex; gap: 8px; margin-bottom: 14px; }
+  .progress-stat { flex: 1; background: var(--card); border-radius: var(--radius-sm); border: 1px solid var(--border); padding: 12px 8px; text-align: center; }
+  .progress-stat .stat-val { font-family: var(--font-display); font-size: 22px; letter-spacing: 0.5px; }
+  .progress-stat .stat-lbl { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-top: 2px; }
 
   /* ===== CONTENT ===== */
   .content { padding: 0 16px 32px; }
@@ -380,6 +416,7 @@
   <button class="tab" data-day="vie" onclick="showDay('vie')">VIE</button>
   <button class="tab" data-day="sab" onclick="showDay('sab')">SÁB</button>
   <button class="tab" data-day="dom" onclick="showDay('dom')">DOM</button>
+  <button class="tab" data-day="prog" onclick="showDay('prog')">📈</button>
 </div>
 
 <div class="content">
@@ -646,6 +683,45 @@
     </div>
   </div>
 
+  <!-- PROGRESO -->
+  <div class="day-panel" id="day-prog">
+    <div class="day-title"><div class="day-dot" style="background:var(--accent)"></div><h2>PROGRESO</h2></div>
+    <div class="day-subtitle">Evolución semanal · Mediciones domingos</div>
+
+    <!-- Input -->
+    <div class="section" id="prog-input">
+      <div class="section-header" onclick="toggle('prog-input')"><h3>NUEVA MEDICIÓN</h3><div><span class="badge">cargar</span><span class="chevron">▼</span></div></div>
+      <div class="section-body">
+        <div class="progress-input-row">
+          <input type="date" class="progress-date" id="prog-date">
+          <input type="number" inputmode="decimal" class="progress-weight-input" id="prog-weight" placeholder="kg">
+          <input type="number" inputmode="decimal" class="progress-waist-input" id="prog-waist" placeholder="cm">
+          <button class="progress-add-btn" onclick="addMeasurement()">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="progress-stats" id="prog-stats"></div>
+
+    <!-- Chart -->
+    <div class="progress-chart">
+      <h3>📈 PESO</h3>
+      <svg class="chart-svg" id="weight-chart"></svg>
+    </div>
+
+    <div class="progress-chart" style="margin-bottom:12px">
+      <h3 style="color:var(--cyan)">📏 CINTURA</h3>
+      <svg class="chart-svg" id="waist-chart"></svg>
+    </div>
+
+    <!-- History -->
+    <div class="progress-history">
+      <h3>HISTORIAL</h3>
+      <div id="prog-history"></div>
+    </div>
+  </div>
+
   <!-- REGLAS -->
   <div class="rules">
     <h3>REGLAS CLAVE</h3>
@@ -818,10 +894,156 @@ function resetAll() {
   }
 }
 
+// ===== PROGRESS TRACKER =====
+function getMeasurements() { try { return JSON.parse(localStorage.getItem('brn-progress') || '[]'); } catch(e) { return []; } }
+function saveMeasurements(data) { localStorage.setItem('brn-progress', JSON.stringify(data)); }
+
+function addMeasurement() {
+  const date = document.getElementById('prog-date').value;
+  const weight = parseFloat(document.getElementById('prog-weight').value);
+  const waist = parseFloat(document.getElementById('prog-waist').value);
+  if (!date || !weight) { alert('Poné fecha y peso mínimo'); return; }
+  const data = getMeasurements();
+  // Remove existing entry for same date
+  const filtered = data.filter(d => d.date !== date);
+  filtered.push({ date, weight, waist: waist || null });
+  filtered.sort((a, b) => a.date.localeCompare(b.date));
+  saveMeasurements(filtered);
+  document.getElementById('prog-weight').value = '';
+  document.getElementById('prog-waist').value = '';
+  renderProgress();
+}
+
+function deleteMeasurement(date) {
+  if (!confirm('¿Borrar medición del ' + date + '?')) return;
+  const data = getMeasurements().filter(d => d.date !== date);
+  saveMeasurements(data);
+  renderProgress();
+}
+
+function renderChart(svgId, data, key, goalValue, color, glowColor) {
+  const svg = document.getElementById(svgId);
+  if (!svg) return;
+  const values = data.map(d => d[key]).filter(v => v !== null && v !== undefined);
+  if (values.length < 1) { svg.innerHTML = '<text x="50%" y="50%" text-anchor="middle" fill="#333" font-size="13" font-family="DM Sans">Sin datos</text>'; return; }
+
+  const w = svg.clientWidth || 320;
+  const h = 200;
+  const padL = 40, padR = 16, padT = 16, padB = 28;
+  const chartW = w - padL - padR;
+  const chartH = h - padT - padB;
+
+  const allVals = goalValue ? [...values, goalValue] : values;
+  let minV = Math.floor(Math.min(...allVals) - 1);
+  let maxV = Math.ceil(Math.max(...allVals) + 1);
+  if (maxV - minV < 3) { minV -= 1; maxV += 1; }
+
+  const scaleX = (i) => padL + (values.length === 1 ? chartW / 2 : (i / (values.length - 1)) * chartW);
+  const scaleY = (v) => padT + chartH - ((v - minV) / (maxV - minV)) * chartH;
+
+  let svgContent = '';
+
+  // Grid lines
+  const gridSteps = 4;
+  for (let i = 0; i <= gridSteps; i++) {
+    const v = minV + (i / gridSteps) * (maxV - minV);
+    const y = scaleY(v);
+    svgContent += '<line x1="' + padL + '" y1="' + y + '" x2="' + (w - padR) + '" y2="' + y + '" stroke="#1a1a1a" stroke-width="1"/>';
+    svgContent += '<text x="' + (padL - 6) + '" y="' + (y + 3) + '" text-anchor="end" class="chart-label">' + v.toFixed(1) + '</text>';
+  }
+
+  // Goal line
+  if (goalValue) {
+    const gy = scaleY(goalValue);
+    svgContent += '<line x1="' + padL + '" y1="' + gy + '" x2="' + (w - padR) + '" y2="' + gy + '" class="chart-goal"/>';
+    svgContent += '<text x="' + (w - padR) + '" y="' + (gy - 5) + '" text-anchor="end" fill="#00E676" font-size="10" font-family="DM Sans" opacity="0.6">META</text>';
+  }
+
+  // Area
+  if (values.length > 1) {
+    let areaPath = 'M' + scaleX(0) + ',' + scaleY(values[0]);
+    for (let i = 1; i < values.length; i++) areaPath += ' L' + scaleX(i) + ',' + scaleY(values[i]);
+    areaPath += ' L' + scaleX(values.length - 1) + ',' + (padT + chartH) + ' L' + scaleX(0) + ',' + (padT + chartH) + ' Z';
+    svgContent += '<path d="' + areaPath + '" fill="' + glowColor + '"/>';
+  }
+
+  // Line
+  if (values.length > 1) {
+    let linePath = 'M' + scaleX(0) + ',' + scaleY(values[0]);
+    for (let i = 1; i < values.length; i++) linePath += ' L' + scaleX(i) + ',' + scaleY(values[i]);
+    svgContent += '<path d="' + linePath + '" fill="none" stroke="' + color + '" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>';
+  }
+
+  // Dots + labels
+  const filteredData = data.filter(d => d[key] !== null && d[key] !== undefined);
+  for (let i = 0; i < values.length; i++) {
+    const x = scaleX(i);
+    const y = scaleY(values[i]);
+    svgContent += '<circle cx="' + x + '" cy="' + y + '" r="4" fill="' + color + '" stroke="#050505" stroke-width="2"/>';
+    svgContent += '<text x="' + x + '" y="' + (y - 10) + '" text-anchor="middle" class="chart-value">' + values[i].toFixed(1) + '</text>';
+    // Date label
+    if (filteredData[i]) {
+      const d = filteredData[i].date.slice(5); // MM-DD
+      svgContent += '<text x="' + x + '" y="' + (h - 4) + '" text-anchor="middle" class="chart-label">' + d + '</text>';
+    }
+  }
+
+  svg.innerHTML = svgContent;
+}
+
+function renderProgress() {
+  const data = getMeasurements();
+  const today = new Date().toISOString().slice(0, 10);
+  document.getElementById('prog-date').value = today;
+
+  // Stats
+  const statsEl = document.getElementById('prog-stats');
+  if (data.length > 0) {
+    const first = data[0];
+    const last = data[data.length - 1];
+    const totalChange = (last.weight - first.weight).toFixed(1);
+    const weeks = Math.max(1, Math.round((new Date(last.date) - new Date(first.date)) / (7 * 86400000)));
+    const weeklyAvg = (totalChange / weeks).toFixed(2);
+    const toGoal = (72 - last.weight).toFixed(1);
+    statsEl.innerHTML =
+      '<div class="progress-stat"><div class="stat-val">' + last.weight + '</div><div class="stat-lbl">Último peso</div></div>' +
+      '<div class="progress-stat"><div class="stat-val" style="color:' + (totalChange >= 0 ? 'var(--green)' : 'var(--red)') + '">' + (totalChange > 0 ? '+' : '') + totalChange + '</div><div class="stat-lbl">Total Δ</div></div>' +
+      '<div class="progress-stat"><div class="stat-val">' + weeklyAvg + '</div><div class="stat-lbl">Kg/sem</div></div>' +
+      '<div class="progress-stat"><div class="stat-val" style="color:var(--gold)">' + toGoal + '</div><div class="stat-lbl">Para meta</div></div>';
+  } else {
+    statsEl.innerHTML = '';
+  }
+
+  // Charts
+  renderChart('weight-chart', data, 'weight', 72, '#FF3E1D', 'rgba(255,62,29,0.1)');
+  renderChart('waist-chart', data.filter(d => d.waist), 'waist', null, '#00BCD4', 'rgba(0,188,212,0.1)');
+
+  // History
+  const histEl = document.getElementById('prog-history');
+  if (data.length === 0) {
+    histEl.innerHTML = '<div style="padding:20px;text-align:center;color:#333;font-size:13px">Cargá tu primera medición</div>';
+    return;
+  }
+  let html = '';
+  for (let i = data.length - 1; i >= 0; i--) {
+    const d = data[i];
+    const dateStr = d.date.slice(5).replace('-', '/');
+    let delta = '';
+    if (i > 0) {
+      const diff = (d.weight - data[i - 1].weight).toFixed(1);
+      const cls = diff > 0 ? 'up' : diff < 0 ? 'down' : 'same';
+      delta = '<span class="history-delta ' + cls + '">' + (diff > 0 ? '+' : '') + diff + '</span>';
+    }
+    const waistStr = d.waist ? '<span class="history-waist">' + d.waist + ' cm</span>' : '';
+    html += '<div class="history-row"><span class="history-date">' + dateStr + '</span>' + waistStr + '<span class="history-weight">' + d.weight + ' kg</span>' + delta + '<button class="history-delete" onclick="deleteMeasurement(\'' + d.date + '\')">×</button></div>';
+  }
+  histEl.innerHTML = html;
+}
+
 // ===== INIT =====
 const days = ['dom','lun','mar','mie','jue','vie','sab'];
 showDay(days[new Date().getDay()]);
-loadWeights(); loadChecks(); renderCreatineWeek(); updateStreak(); renderWater();
+loadWeights(); loadChecks(); renderCreatineWeek(); updateStreak(); renderWater(); renderProgress();
 </script>
 </body>
 </html>
