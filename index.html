@@ -422,14 +422,22 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);-webkit
 <div class="dt" style="margin-top:8px"><div class="dd" style="background:var(--accent)"></div><h2>PROGRESO</h2></div>
 <div class="ds">Evolución semanal · Mediciones domingos</div>
 <div class="sec" id="pi"><div class="sh" onclick="tg('pi')"><h3>NUEVA MEDICIÓN</h3><div><span class="bg">cargar</span><span class="ch">▼</span></div></div><div class="sb">
-<div class="pir"><input type="date" class="pid" id="pd"><input type="number" inputmode="decimal" class="piw" id="pw" placeholder="kg"><input type="number" inputmode="decimal" class="pic" id="pwa" placeholder="cm"><button class="pab" onclick="am()">+</button></div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<input type="date" class="pid" id="pd" style="width:100%">
+<div style="display:flex;gap:6px">
+<input type="text" inputmode="decimal" class="piw" id="pw" placeholder="peso kg" style="flex:1">
+<input type="text" inputmode="decimal" class="piw" id="pf" placeholder="grasa %" style="flex:1">
+<input type="text" inputmode="decimal" class="piw" id="pm" placeholder="músc kg" style="flex:1">
+</div>
+<button class="pab" onclick="am()" style="width:100%">AGREGAR MEDICIÓN</button>
+</div>
 </div></div>
 <div class="ps" id="pst"></div>
 <div class="pc"><h3>📈 PESO</h3><svg class="csv" id="ch-w"></svg></div>
 <div class="pc"><h3 style="color:var(--gold)">🔥 GRASA %</h3><svg class="csv" id="ch-f"></svg></div>
 <div class="pc" style="margin-bottom:12px"><h3 style="color:var(--green)">💪 MÚSCULO (kg esq.)</h3><svg class="csv" id="ch-m"></svg></div>
 <div class="ph"><h3>HISTORIAL</h3><div id="phst"></div></div>
-<div class="rss"><button class="rsb" onclick="ra()">RESETEAR DATOS</button></div>
+
 <div class="fb">BRUNEITOR</div>
 </div>
 </div>
