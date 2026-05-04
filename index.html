@@ -163,6 +163,22 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);-webkit
 .psi{flex:1;background:var(--card);border-radius:var(--radius-sm);border:1px solid var(--border);padding:12px 8px;text-align:center}
 .psi .sv{font-family:var(--font-display);font-size:22px}
 .psi .sl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;font-weight:600;margin-top:2px}
+
+.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:300;justify-content:center;align-items:center;padding:20px}
+.modal.show{display:flex}
+.modal-content{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:20px;width:100%;max-width:380px}
+.modal-title{font-family:var(--font-display);font-size:18px;letter-spacing:2px;margin-bottom:14px;color:var(--accent)}
+.modal-row{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.modal-row label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;font-weight:600}
+.modal-row input{padding:10px 12px;border-radius:var(--radius-sm);border:1px solid var(--border);background:rgba(255,255,255,0.03);color:var(--text);font-family:var(--font-body);font-size:14px;-webkit-appearance:none}
+.modal-row input:focus{outline:none;border-color:var(--accent)}
+.modal-actions{display:flex;gap:8px;margin-top:16px}
+.modal-btn{flex:1;padding:12px;border-radius:var(--radius-sm);border:none;font-family:var(--font-display);font-size:13px;letter-spacing:1.5px;cursor:pointer}
+.modal-btn.save{background:var(--accent);color:#fff}
+.modal-btn.del{background:transparent;border:1px solid var(--red);color:var(--red)}
+.modal-btn.cancel{background:rgba(255,255,255,0.05);color:var(--muted)}
+.hde{background:none;border:none;color:var(--muted);font-size:14px;cursor:pointer;padding:0 4px}
+.hde:active{color:var(--accent)}
 </style>
 </head>
 <body>
@@ -422,15 +438,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);-webkit
 <div class="dt" style="margin-top:8px"><div class="dd" style="background:var(--accent)"></div><h2>PROGRESO</h2></div>
 <div class="ds">Evolución semanal · Mediciones domingos</div>
 <div class="sec" id="pi"><div class="sh" onclick="tg('pi')"><h3>NUEVA MEDICIÓN</h3><div><span class="bg">cargar</span><span class="ch">▼</span></div></div><div class="sb">
-<div style="display:flex;flex-direction:column;gap:8px">
-<input type="date" class="pid" id="pd" style="width:100%">
-<div style="display:flex;gap:6px">
-<input type="text" inputmode="decimal" class="piw" id="pw" placeholder="peso kg" style="flex:1">
-<input type="text" inputmode="decimal" class="piw" id="pf" placeholder="grasa %" style="flex:1">
-<input type="text" inputmode="decimal" class="piw" id="pm" placeholder="músc kg" style="flex:1">
-</div>
-<button class="pab" onclick="am()" style="width:100%">AGREGAR MEDICIÓN</button>
-</div>
+<div class="pir"><input type="date" class="pid" id="pd"><input type="text" inputmode="decimal" class="piw" id="pw" placeholder="kg"><input type="text" inputmode="decimal" class="pic" id="pwa" placeholder="cm"><button class="pab" onclick="am()">+</button></div>
 </div></div>
 <div class="ps" id="pst"></div>
 <div class="pc"><h3>📈 PESO</h3><svg class="csv" id="ch-w"></svg></div>
@@ -440,6 +448,23 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);-webkit
 
 <div class="fb">BRUNEITOR</div>
 </div>
+</div>
+
+
+<div class="modal" id="emodal">
+  <div class="modal-content">
+    <div class="modal-title">EDITAR MEDICIÓN</div>
+    <div class="modal-row"><label>Fecha</label><input type="date" id="em-date" disabled></div>
+    <div class="modal-row"><label>Peso (kg)</label><input type="text" inputmode="decimal" id="em-w" placeholder="ej: 67,8"></div>
+    <div class="modal-row"><label>Grasa % (opcional)</label><input type="text" inputmode="decimal" id="em-f" placeholder="ej: 17,2"></div>
+    <div class="modal-row"><label>Músculo kg (opcional)</label><input type="text" inputmode="decimal" id="em-m" placeholder="ej: 44,1"></div>
+    <div class="modal-row"><label>Cintura cm (opcional)</label><input type="text" inputmode="decimal" id="em-wa" placeholder="ej: 78"></div>
+    <div class="modal-actions">
+      <button class="modal-btn cancel" onclick="closeEdit()">CANCELAR</button>
+      <button class="modal-btn del" onclick="deleteCurrent()">BORRAR</button>
+      <button class="modal-btn save" onclick="saveEdit()">GUARDAR</button>
+    </div>
+  </div>
 </div>
 
 <!-- NAV -->
@@ -594,17 +619,55 @@ function us(){
 function gms(){try{return JSON.parse(localStorage.getItem('brn-pr')||'[]');}catch(e){return [];}}
 function sms(d){localStorage.setItem('brn-pr',JSON.stringify(d));}
 function am(){
-  var dt=document.getElementById('pd').value,wt=parseFloat(document.getElementById('pw').value),wa=parseFloat(document.getElementById('pwa').value);
-  if(!dt||!wt){alert('Pon\u00e9 fecha y peso');return;}
+  var dt=document.getElementById('pd').value;
+  var wt=parseFloat((document.getElementById('pw').value||'').replace(',','.'));
+  var wa=parseFloat((document.getElementById('pwa').value||'').replace(',','.'));
+  if(!dt||!wt||isNaN(wt)){alert('Pon\u00e9 fecha y peso');return;}
   var data=gms().filter(function(d){return d.date!==dt;});
-  data.push({date:dt,weight:wt,waist:wa||null});
+  data.push({date:dt,weight:wt,waist:isNaN(wa)?null:wa});
   data.sort(function(a,b){return a.date.localeCompare(b.date);});
   sms(data);document.getElementById('pw').value='';document.getElementById('pwa').value='';rp();
 }
-function dm(el){
+var currentEditDate=null;
+function openEdit(el){
   var dt=el.getAttribute('data-dt');
-  if(!confirm('Borrar '+dt+'?')) return;
-  sms(gms().filter(function(d){return d.date!==dt;}));rp();
+  var data=gms();
+  var m=null;
+  for(var i=0;i<data.length;i++){if(data[i].date===dt){m=data[i];break;}}
+  if(!m)return;
+  currentEditDate=dt;
+  document.getElementById('em-date').value=dt;
+  document.getElementById('em-w').value=m.weight||'';
+  document.getElementById('em-f').value=m.fat||'';
+  document.getElementById('em-m').value=m.muscle||'';
+  document.getElementById('em-wa').value=m.waist||'';
+  document.getElementById('emodal').classList.add('show');
+}
+function closeEdit(){document.getElementById('emodal').classList.remove('show');currentEditDate=null;}
+function saveEdit(){
+  if(!currentEditDate)return;
+  var wt=parseFloat((document.getElementById('em-w').value||'').replace(',','.'));
+  var ft=parseFloat((document.getElementById('em-f').value||'').replace(',','.'));
+  var mu=parseFloat((document.getElementById('em-m').value||'').replace(',','.'));
+  var wa=parseFloat((document.getElementById('em-wa').value||'').replace(',','.'));
+  if(isNaN(wt)){alert('El peso es obligatorio');return;}
+  var data=gms();
+  for(var i=0;i<data.length;i++){
+    if(data[i].date===currentEditDate){
+      data[i].weight=wt;
+      data[i].fat=isNaN(ft)?null:ft;
+      data[i].muscle=isNaN(mu)?null:mu;
+      data[i].waist=isNaN(wa)?null:wa;
+      break;
+    }
+  }
+  sms(data);closeEdit();rp();
+}
+function deleteCurrent(){
+  if(!currentEditDate)return;
+  if(!confirm('Borrar medición del '+currentEditDate+'?'))return;
+  sms(gms().filter(function(d){return d.date!==currentEditDate;}));
+  closeEdit();rp();
 }
 function rc(sid,data,key,goal,col,glow){
   var svg=document.getElementById(sid);if(!svg) return;
@@ -645,7 +708,7 @@ function rp(){
     var d=data[i],ds=d.date.slice(5).replace('-','/'),delta='';
     if(i>0){var df=(d.weight-data[i-1].weight).toFixed(1),cl=df>0?'up':df<0?'down':'same';delta='<span class="hdl '+cl+'">'+(df>0?'+':'')+df+'</span>';}
     var fs2=d.fat?'<span class="hwa">'+d.fat+'%</span>':'';
-    html+='<div class="hr"><span class="hd">'+ds+'</span>'+fs2+'<span class="hw">'+d.weight+' kg</span>'+delta+'<button class="hdb" data-dt="'+d.date+'" onclick="dm(this)">\u00d7</button></div>';
+    html+='<div class="hr"><span class="hd">'+ds+'</span>'+fs2+'<span class="hw">'+d.weight+' kg</span>'+delta+'<button class="hde" data-dt="'+d.date+'" onclick="openEdit(this)">\u270e</button></div>';
   }
   he.innerHTML=html;
 }
